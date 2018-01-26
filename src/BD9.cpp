@@ -9,92 +9,27 @@ struct BD9Container {
   unsigned int length;
 };
 
+struct BD9Container samples[16] = {
+  { (float *) kick1, kick1_len },
+  { (float *) kick2, kick2_len },
+  { (float *) kick3, kick3_len },
+  { (float *) kick4, kick4_len },
+  { (float *) kick5, kick5_len },
+  { (float *) kick6, kick6_len },
+  { (float *) kick7, kick7_len },
+  { (float *) kick8, kick8_len },
+  { (float *) kick9, kick9_len },
+  { (float *) kick10, kick10_len },
+  { (float *) kick11, kick11_len },
+  { (float *) kick12, kick12_len },
+  { (float *) kick13, kick13_len },
+  { (float *) kick14, kick14_len },
+  { (float *) kick15, kick15_len },
+  { (float *) kick16, kick16_len },
+};
+
 struct BD9Container *getState (float current) {
-  static struct BD9Container c;
-
-  switch ((int) current) {
-  case 1:
-    c.length = kick1_len;
-    c.sample = (float *) kick1;
-    break;
-
-  case 2:
-    c.length = kick2_len;
-    c.sample = (float *) kick2;
-    break;
-
-  case 3:
-    c.length = kick3_len;
-    c.sample = (float *) kick3;
-    break;
-
-  case 4:
-    c.length = kick4_len;
-    c.sample = (float *) kick4;
-    break;
-
-  case 5:
-    c.length = kick5_len;
-    c.sample = (float *) kick5;
-    break;
-
-  case 6:
-    c.length = kick6_len;
-    c.sample = (float *) kick6;
-    break;
-
-  case 7:
-    c.length = kick7_len;
-    c.sample = (float *) kick7;
-    break;
-
-  case 8:
-    c.length = kick8_len;
-    c.sample = (float *) kick8;
-    break;
-
-  case 9:
-    c.length = kick9_len;
-    c.sample = (float *) kick9;
-    break;
-
-  case 10:
-    c.length = kick10_len;
-    c.sample = (float *) kick10;
-    break;
-
-  case 11:
-    c.length = kick11_len;
-    c.sample = (float *) kick11;
-    break;
-
-  case 12:
-    c.length = kick12_len;
-    c.sample = (float *) kick12;
-    break;
-
-  case 13:
-    c.length = kick13_len;
-    c.sample = (float *) kick13;
-    break;
-
-  case 14:
-    c.length = kick14_len;
-    c.sample = (float *) kick14;
-    break;
-
-  case 15:
-    c.length = kick15_len;
-    c.sample = (float *) kick15;
-    break;
-
-  case 16:
-    c.length = kick16_len;
-    c.sample = (float *) kick16;
-    break;
-  }
-
-  return &c;
+  return &samples[(int) current];
 }
 
 
