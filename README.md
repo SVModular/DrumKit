@@ -8,7 +8,11 @@ A work in progress.
 
 ### BD-9
 
-16 bass drums from TR909.
+16 bass drums based on the TR909.
+
+### Snare-N
+
+16 snare drums based on the Novation Drumstation.
 
 ## Building
 

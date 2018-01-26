@@ -13,3 +13,7 @@ extern Plugin *plugin;
 struct BD9Widget : ModuleWidget {
 	BD9Widget();
 };
+
+struct SnareWidget : ModuleWidget {
+	SnareWidget();
+};

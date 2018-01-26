@@ -16,6 +16,7 @@ void init(rack::Plugin *p) {
 
 	// For each module, specify the ModuleWidget subclass, manufacturer slug (for saving in patches), manufacturer human-readable name, module slug, and module name
 	p->addModel(createModel<BD9Widget>("DrumKit", "Bass Drum 9", "Bass Drum 9"));
+  p->addModel(createModel<SnareWidget>("DrumKit", "Snare Drum N", "Snare Drum N"));
 
 	// Any other plugin initialization may go here.
 	// As an alternative, consider lazy-loading assets and lookup tables when your module is created to reduce startup times of Rack.
