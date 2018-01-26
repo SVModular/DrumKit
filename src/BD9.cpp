@@ -9,7 +9,7 @@ struct BD9Container {
   unsigned int length;
 };
 
-struct BD9Container samples[16] = {
+struct BD9Container bd9samples[16] = {
   { (float *) kick1, kick1_len },
   { (float *) kick2, kick2_len },
   { (float *) kick3, kick3_len },
@@ -28,8 +28,8 @@ struct BD9Container samples[16] = {
   { (float *) kick16, kick16_len },
 };
 
-struct BD9Container *getState (float current) {
-  return &samples[(int) current];
+struct BD9Container *bdgetState (float current) {
+  return &bd9samples[(int) current - 1];
 }
 
 
@@ -86,7 +86,7 @@ void BD9Module::step() {
   }
 
   float current1 = params[DRUM1_PARAM].value;
-  struct BD9Container *c = getState(current1);
+  struct BD9Container *c = bdgetState(current1);
 
   if (currentStep1 >= c->length) {
     outputs[AUDIO1_OUTPUT].value = 0;
@@ -107,7 +107,7 @@ void BD9Module::step() {
   }
 
   float current2 = params[DRUM2_PARAM].value;
-  c = getState(current2);
+  c = bdgetState(current2);
 
   if (currentStep2 >= c->length) {
     outputs[AUDIO2_OUTPUT].value = 0;
