@@ -1,8 +1,6 @@
 #include "rack.hpp"
 
-
 using namespace rack;
-
 
 extern Plugin *plugin;
 
@@ -11,9 +9,13 @@ extern Plugin *plugin;
 ////////////////////
 
 struct BD9Widget : ModuleWidget {
-	BD9Widget();
+  BD9Widget( );
 };
 
 struct SnareWidget : ModuleWidget {
-	SnareWidget();
+  SnareWidget( );
+};
+
+struct ClosedHHWidget : ModuleWidget {
+  ClosedHHWidget( );
 };

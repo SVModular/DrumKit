@@ -2,38 +2,45 @@
 
 #include "../deps/SynthDevKit/src/CV.hpp"
 #include "DrumKit.hpp"
-#include "snare.h"
+#include "closedhh.h"
 
-struct SnareContainer {
+struct ClosedHHContainer {
   float *sample;
   unsigned int length;
 };
 
-struct SnareContainer snsamples[ 16 ] = {
-  { (float *)snare1, snare1_len },   { (float *)snare2, snare2_len },
-  { (float *)snare3, snare3_len },   { (float *)snare4, snare4_len },
-  { (float *)snare5, snare5_len },   { (float *)snare6, snare6_len },
-  { (float *)snare7, snare7_len },   { (float *)snare8, snare8_len },
-  { (float *)snare9, snare9_len },   { (float *)snare10, snare10_len },
-  { (float *)snare11, snare11_len }, { (float *)snare12, snare12_len },
-  { (float *)snare13, snare13_len }, { (float *)snare14, snare14_len },
-  { (float *)snare15, snare15_len }, { (float *)snare16, snare16_len },
+struct ClosedHHContainer chhsamples[ 16 ] = {
+  { (float *)closedhh1, closedhh1_len },
+  { (float *)closedhh2, closedhh2_len },
+  { (float *)closedhh3, closedhh3_len },
+  { (float *)closedhh4, closedhh4_len },
+  { (float *)closedhh5, closedhh5_len },
+  { (float *)closedhh6, closedhh6_len },
+  { (float *)closedhh7, closedhh7_len },
+  { (float *)closedhh8, closedhh8_len },
+  { (float *)closedhh9, closedhh9_len },
+  { (float *)closedhh10, closedhh10_len },
+  { (float *)closedhh11, closedhh11_len },
+  { (float *)closedhh12, closedhh12_len },
+  { (float *)closedhh13, closedhh13_len },
+  { (float *)closedhh14, closedhh14_len },
+  { (float *)closedhh15, closedhh15_len }
 };
 
-struct SnareContainer *sngetState(float current) {
+struct ClosedHHContainer *chhgetState(float current) {
   if (current < 1) {
-    return &snsamples[ 0 ];
+    return &chhsamples[ 0 ];
   }
-  return &snsamples[ (int)current - 1 ];
+  return &chhsamples[ (int)current - 1 ];
 }
 
-struct SnareModule : Module {
+struct ClosedHHModule : Module {
   enum ParamIds { DRUM1_PARAM, DRUM2_PARAM, NUM_PARAMS };
   enum InputIds { CLOCK1_INPUT, CLOCK2_INPUT, NUM_INPUTS };
   enum OutputIds { AUDIO1_OUTPUT, AUDIO2_OUTPUT, NUM_OUTPUTS };
   enum LightIds { NUM_LIGHTS };
 
-  SnareModule( ) : Module(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS) {
+  ClosedHHModule( ) : Module(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS) {
     cv1          = new SynthDevKit::CV(1.7f);
     cv2          = new SynthDevKit::CV(1.7f);
     currentStep1 = 0;
@@ -52,7 +59,7 @@ struct SnareModule : Module {
   bool ready2;
 };
 
-void SnareModule::step( ) {
+void ClosedHHModule::step( ) {
   float in1 = inputs[ CLOCK1_INPUT ].value;
   cv1->update(in1);
 
@@ -64,8 +71,8 @@ void SnareModule::step( ) {
     currentStep1 = 0;
   }
 
-  float current1           = params[ DRUM1_PARAM ].value;
-  struct SnareContainer *c = sngetState(current1);
+  float current1              = params[ DRUM1_PARAM ].value;
+  struct ClosedHHContainer *c = chhgetState(current1);
 
   if (currentStep1 >= c->length) {
     outputs[ AUDIO1_OUTPUT ].value = 0;
@@ -86,7 +93,7 @@ void SnareModule::step( ) {
   }
 
   float current2 = params[ DRUM2_PARAM ].value;
-  c              = sngetState(current2);
+  c              = chhgetState(current2);
 
   if (currentStep2 >= c->length) {
     outputs[ AUDIO2_OUTPUT ].value = 0;
@@ -96,15 +103,15 @@ void SnareModule::step( ) {
   }
 }
 
-SnareWidget::SnareWidget( ) {
-  SnareModule *module = new SnareModule( );
+ClosedHHWidget::ClosedHHWidget( ) {
+  ClosedHHModule *module = new ClosedHHModule( );
   setModule(module);
   box.size = Vec(3 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT);
 
   {
     SVGPanel *panel = new SVGPanel( );
     panel->box.size = box.size;
-    panel->setBackground(SVG::load(assetPlugin(plugin, "res/Snare.svg")));
+    panel->setBackground(SVG::load(assetPlugin(plugin, "res/ClosedHH.svg")));
     addChild(panel);
   }
 
@@ -112,19 +119,19 @@ SnareWidget::SnareWidget( ) {
   addChild(createScrew<ScrewSilver>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-  addInput(
-      createInput<PJ301MPort>(Vec(10, 45), module, SnareModule::CLOCK1_INPUT));
+  addInput(createInput<PJ301MPort>(Vec(10, 45), module,
+                                   ClosedHHModule::CLOCK1_INPUT));
   addParam(createParam<RoundSmallBlackSnapKnob>(
-      Vec(8, 92), module, SnareModule::DRUM1_PARAM, 1.0, 16.0, 8.0));
+      Vec(8, 92), module, ClosedHHModule::DRUM1_PARAM, 1.0, 15.0, 8.0));
 
   addOutput(createOutput<PJ301MPort>(Vec(10, 149), module,
-                                     SnareModule::AUDIO1_OUTPUT));
+                                     ClosedHHModule::AUDIO1_OUTPUT));
 
-  addInput(
-      createInput<PJ301MPort>(Vec(10, 205), module, SnareModule::CLOCK2_INPUT));
+  addInput(createInput<PJ301MPort>(Vec(10, 205), module,
+                                   ClosedHHModule::CLOCK2_INPUT));
   addParam(createParam<RoundSmallBlackSnapKnob>(
-      Vec(8, 252), module, SnareModule::DRUM2_PARAM, 1.0, 16.0, 8.0));
+      Vec(8, 252), module, ClosedHHModule::DRUM2_PARAM, 1.0, 15.0, 8.0));
 
   addOutput(createOutput<PJ301MPort>(Vec(10, 308), module,
-                                     SnareModule::AUDIO2_OUTPUT));
+                                     ClosedHHModule::AUDIO2_OUTPUT));
 }
