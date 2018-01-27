@@ -14,6 +14,14 @@ A work in progress.
 
 16 snare drums based on the Novation Drumstation.
 
+### Closed HiHats
+
+15 closed high hats.
+
+### Open HiHats
+
+14 open high hats.
+
 ## Building
 
 Building requires [SynthDevKit](https://github.com/JerrySievert/SynthDevKit),

@@ -19,3 +19,7 @@ struct SnareWidget : ModuleWidget {
 struct ClosedHHWidget : ModuleWidget {
   ClosedHHWidget( );
 };
+
+struct OpenHHWidget : ModuleWidget {
+  OpenHHWidget( );
+};

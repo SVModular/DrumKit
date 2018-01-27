@@ -21,6 +21,8 @@ void init(rack::Plugin *p) {
       createModel<SnareWidget>("DrumKit", "Snare Drum N", "Snare Drum N"));
   p->addModel(
       createModel<ClosedHHWidget>("DrumKit", "Closed HiHat", "Closed HiHat"));
+	p->addModel(
+      createModel<OpenHHWidget>("DrumKit", "Open HiHat", "Open HiHat"));
 
   // Any other plugin initialization may go here.
   // As an alternative, consider lazy-loading assets and lookup tables when your
