@@ -22,6 +22,15 @@ A work in progress.
 
 14 open high hats.
 
+### DMX
+
+Full DMX Kit, starting at Octave 5, C#, and continuing for 12 steps.
+
+Anything above/below this will not trigger a note.  If a note is triggered, it
+will not trigger again until a note out of range is sent.
+
+This is a very expiremental module.
+
 ## Building
 
 Building requires [SynthDevKit](https://github.com/JerrySievert/SynthDevKit),

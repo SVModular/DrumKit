@@ -23,3 +23,7 @@ struct ClosedHHWidget : ModuleWidget {
 struct OpenHHWidget : ModuleWidget {
   OpenHHWidget( );
 };
+
+struct DMXWidget : ModuleWidget {
+  DMXWidget( );
+};
