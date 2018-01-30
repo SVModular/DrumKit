@@ -2,105 +2,31 @@
 
 #include "../deps/SynthDevKit/src/CV.hpp"
 #include "DrumKit.hpp"
+#include "DrumModule.hpp"
 #include "closedhh.h"
 
-struct ClosedHHContainer {
-  float *sample;
-  unsigned int length;
+struct ClosedHHModule : DrumModule {
+  void setupSamples( ) override;
 };
 
-struct ClosedHHContainer chhsamples[ 16 ] = {
-  { (float *)closedhh1, closedhh1_len },
-  { (float *)closedhh2, closedhh2_len },
-  { (float *)closedhh3, closedhh3_len },
-  { (float *)closedhh4, closedhh4_len },
-  { (float *)closedhh5, closedhh5_len },
-  { (float *)closedhh6, closedhh6_len },
-  { (float *)closedhh7, closedhh7_len },
-  { (float *)closedhh8, closedhh8_len },
-  { (float *)closedhh9, closedhh9_len },
-  { (float *)closedhh10, closedhh10_len },
-  { (float *)closedhh11, closedhh11_len },
-  { (float *)closedhh12, closedhh12_len },
-  { (float *)closedhh13, closedhh13_len },
-  { (float *)closedhh14, closedhh14_len },
-  { (float *)closedhh15, closedhh15_len }
-};
+void ClosedHHModule::setupSamples( ) {
+  samples[0] = { (float *)closedhh1, closedhh1_len };
+  samples[1] = { (float *)closedhh2, closedhh2_len };
+  samples[2] = { (float *)closedhh3, closedhh3_len };
+  samples[3] = { (float *)closedhh4, closedhh4_len };
+  samples[4] = { (float *)closedhh5, closedhh5_len };
+  samples[5] = { (float *)closedhh6, closedhh6_len };
+  samples[6] = { (float *)closedhh7, closedhh7_len };
+  samples[7] = { (float *)closedhh8, closedhh8_len };
+  samples[8] = { (float *)closedhh9, closedhh9_len };
+  samples[9] = { (float *)closedhh10, closedhh10_len };
+  samples[10] = { (float *)closedhh11, closedhh11_len };
+  samples[11] = { (float *)closedhh12, closedhh12_len };
+  samples[12] = { (float *)closedhh13, closedhh13_len };
+  samples[13] = { (float *)closedhh14, closedhh14_len };
+  samples[14] = { (float *)closedhh15, closedhh15_len };
 
-struct ClosedHHContainer *chhgetState(float current) {
-  if (current < 1) {
-    return &chhsamples[ 0 ];
-  }
-  return &chhsamples[ (int)current - 1 ];
-}
-
-struct ClosedHHModule : Module {
-  enum ParamIds { DRUM1_PARAM, DRUM2_PARAM, NUM_PARAMS };
-  enum InputIds { CLOCK1_INPUT, CLOCK2_INPUT, NUM_INPUTS };
-  enum OutputIds { AUDIO1_OUTPUT, AUDIO2_OUTPUT, NUM_OUTPUTS };
-  enum LightIds { NUM_LIGHTS };
-
-  ClosedHHModule( ) : Module(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS) {
-    cv1          = new SynthDevKit::CV(1.7f);
-    cv2          = new SynthDevKit::CV(1.7f);
-    currentStep1 = 0;
-    currentStep2 = 0;
-    ready1       = false;
-    ready2       = false;
-  }
-
-  void step( ) override;
-
-  SynthDevKit::CV *cv1;
-  uint32_t currentStep1;
-  bool ready1;
-  SynthDevKit::CV *cv2;
-  uint32_t currentStep2;
-  bool ready2;
-};
-
-void ClosedHHModule::step( ) {
-  float in1 = inputs[ CLOCK1_INPUT ].value;
-  cv1->update(in1);
-
-  if (cv1->newTrigger( )) {
-    if (!ready1) {
-      ready1 = true;
-    }
-
-    currentStep1 = 0;
-  }
-
-  float current1              = params[ DRUM1_PARAM ].value;
-  struct ClosedHHContainer *c = chhgetState(current1);
-
-  if (currentStep1 >= c->length) {
-    outputs[ AUDIO1_OUTPUT ].value = 0;
-  } else {
-    outputs[ AUDIO1_OUTPUT ].value = c->sample[ currentStep1 ];
-    currentStep1++;
-  }
-
-  float in2 = inputs[ CLOCK2_INPUT ].value;
-  cv2->update(in2);
-
-  if (cv2->newTrigger( )) {
-    if (!ready2) {
-      ready2 = true;
-    }
-
-    currentStep2 = 0;
-  }
-
-  float current2 = params[ DRUM2_PARAM ].value;
-  c              = chhgetState(current2);
-
-  if (currentStep2 >= c->length) {
-    outputs[ AUDIO2_OUTPUT ].value = 0;
-  } else {
-    outputs[ AUDIO2_OUTPUT ].value = c->sample[ currentStep2 ];
-    currentStep2++;
-  }
+  numSamples = 15;
 }
 
 ClosedHHWidget::ClosedHHWidget( ) {
