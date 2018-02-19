@@ -1,5 +1,4 @@
 #include <stdint.h>
-#include <stdio.h>
 #include "../deps/SynthDevKit/src/CV.hpp"
 #include "DrumKit.hpp"
 #include "DrumModule.hpp"
@@ -10,9 +9,6 @@ struct BD9Module : DrumModule {
 };
 
 void BD9Module::setupSamples( ) {
-  FILE *f1 = fopen("/tmp/bd9.log", "a");
-  fprintf(f1, "Setting up samples\n");
-  fclose(f1);
   samples[0] = { (float *)kick1, kick1_len };
   samples[1] = { (float *)kick2, kick2_len };
   samples[2] = { (float *)kick3, kick3_len };
