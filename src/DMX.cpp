@@ -80,9 +80,11 @@ void DMXModule::step( ) {
   }
 }
 
-DMXWidget::DMXWidget( ) {
-  DMXModule *module = new DMXModule( );
-  setModule(module);
+struct DMXWidget : ModuleWidget {
+  DMXWidget(DMXModule *module);
+};
+
+DMXWidget::DMXWidget(DMXModule *module) : ModuleWidget(module) {
   box.size = Vec(3 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT);
 
   {
@@ -92,13 +94,15 @@ DMXWidget::DMXWidget( ) {
     addChild(panel);
   }
 
-  addChild(createScrew<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
-  addChild(createScrew<ScrewSilver>(
+  addChild(Widget::create<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
+  addChild(Widget::create<ScrewSilver>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-  addInput(createInput<PJ301MPort>(Vec(10, 45), module,
+  addInput(Port::create<PJ301MPort>(Vec(10, 45), Port::INPUT, module,
                                    DMXModule::NOTE1_INPUT));
-  addOutput(createOutput<PJ301MPort>(Vec(10, 92), module,
+  addOutput(Port::create<PJ301MPort>(Vec(10, 92), Port::OUTPUT, module,
                                      DMXModule::AUDIO1_OUTPUT));
 
 }
+
+Model *modelDMX = Model::create<DMXModule, DMXWidget>("DrumKit", "DMX", "DMX");
