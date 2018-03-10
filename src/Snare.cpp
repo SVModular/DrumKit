@@ -30,9 +30,11 @@ void SnareModule::setupSamples( ) {
   numSamples = 16;
 }
 
-SnareWidget::SnareWidget( ) {
-  SnareModule *module = new SnareModule( );
-  setModule(module);
+struct SnareWidget : ModuleWidget {
+    SnareWidget(SnareModule *module);
+};
+
+SnareWidget::SnareWidget(SnareModule *module) : ModuleWidget(module) {
   box.size = Vec(3 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT);
 
   {
@@ -42,23 +44,25 @@ SnareWidget::SnareWidget( ) {
     addChild(panel);
   }
 
-  addChild(createScrew<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
-  addChild(createScrew<ScrewSilver>(
+  addChild(Widget::create<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
+  addChild(Widget::create<ScrewSilver>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
   addInput(
-      createInput<PJ301MPort>(Vec(10, 45), module, SnareModule::CLOCK1_INPUT));
-  addParam(createParam<RoundSmallBlackSnapKnob>(
+      Port::create<PJ301MPort>(Vec(10, 45), Port::INPUT, module, SnareModule::CLOCK1_INPUT));
+  addParam(ParamWidget::create<RoundSmallBlackSnapKnob>(
       Vec(8, 92), module, SnareModule::DRUM1_PARAM, 1.0, 16.0, 8.0));
 
-  addOutput(createOutput<PJ301MPort>(Vec(10, 149), module,
+  addOutput(Port::create<PJ301MPort>(Vec(10, 149), Port::OUTPUT, module,
                                      SnareModule::AUDIO1_OUTPUT));
 
   addInput(
-      createInput<PJ301MPort>(Vec(10, 205), module, SnareModule::CLOCK2_INPUT));
-  addParam(createParam<RoundSmallBlackSnapKnob>(
+      Port::create<PJ301MPort>(Vec(10, 205), Port::INPUT, module, SnareModule::CLOCK2_INPUT));
+  addParam(ParamWidget::create<RoundSmallBlackSnapKnob>(
       Vec(8, 252), module, SnareModule::DRUM2_PARAM, 1.0, 16.0, 8.0));
 
-  addOutput(createOutput<PJ301MPort>(Vec(10, 308), module,
+  addOutput(Port::create<PJ301MPort>(Vec(10, 308), Port::OUTPUT, module,
                                      SnareModule::AUDIO2_OUTPUT));
 }
+
+Model *modelSnare = Model::create<SnareModule, SnareWidget>("DrumKit", "Snare Drum N", "Snare Drum N");

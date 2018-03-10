@@ -28,9 +28,11 @@ void OpenHHModule::setupSamples( ) {
   numSamples = 14;
 }
 
-OpenHHWidget::OpenHHWidget( ) {
-  OpenHHModule *module = new OpenHHModule( );
-  setModule(module);
+struct OpenHHWidget : ModuleWidget {
+  OpenHHWidget(OpenHHModule *module);
+};
+
+OpenHHWidget::OpenHHWidget(OpenHHModule *module) : ModuleWidget(module) {
   box.size = Vec(3 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT);
 
   {
@@ -40,23 +42,25 @@ OpenHHWidget::OpenHHWidget( ) {
     addChild(panel);
   }
 
-  addChild(createScrew<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
-  addChild(createScrew<ScrewSilver>(
+  addChild(Widget::create<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
+  addChild(Widget::create<ScrewSilver>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-  addInput(createInput<PJ301MPort>(Vec(10, 45), module,
+  addInput(Port::create<PJ301MPort>(Vec(10, 45), Port::INPUT, module,
                                    OpenHHModule::CLOCK1_INPUT));
-  addParam(createParam<RoundSmallBlackSnapKnob>(
+  addParam(ParamWidget::create<RoundSmallBlackSnapKnob>(
       Vec(8, 92), module, OpenHHModule::DRUM1_PARAM, 1.0, 14.0, 7.0));
 
-  addOutput(createOutput<PJ301MPort>(Vec(10, 149), module,
+  addOutput(Port::create<PJ301MPort>(Vec(10, 149), Port::OUTPUT, module,
                                      OpenHHModule::AUDIO1_OUTPUT));
 
-  addInput(createInput<PJ301MPort>(Vec(10, 205), module,
+  addInput(Port::create<PJ301MPort>(Vec(10, 205), Port::INPUT, module,
                                    OpenHHModule::CLOCK2_INPUT));
-  addParam(createParam<RoundSmallBlackSnapKnob>(
+  addParam(ParamWidget::create<RoundSmallBlackSnapKnob>(
       Vec(8, 252), module, OpenHHModule::DRUM2_PARAM, 1.0, 14.0, 7.0));
 
-  addOutput(createOutput<PJ301MPort>(Vec(10, 308), module,
+  addOutput(Port::create<PJ301MPort>(Vec(10, 308), Port::OUTPUT, module,
                                      OpenHHModule::AUDIO2_OUTPUT));
 }
+
+Model *modelOpenHH = Model::create<OpenHHModule, OpenHHWidget>("DrumKit", "Open HiHat", "Open HiHat");

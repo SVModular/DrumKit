@@ -29,9 +29,11 @@ void ClosedHHModule::setupSamples( ) {
   numSamples = 15;
 }
 
-ClosedHHWidget::ClosedHHWidget( ) {
-  ClosedHHModule *module = new ClosedHHModule( );
-  setModule(module);
+struct ClosedHHWidget : ModuleWidget {
+    ClosedHHWidget(ClosedHHModule *module);
+};
+
+ClosedHHWidget::ClosedHHWidget(ClosedHHModule *module) : ModuleWidget(module) {
   box.size = Vec(3 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT);
 
   {
@@ -41,23 +43,25 @@ ClosedHHWidget::ClosedHHWidget( ) {
     addChild(panel);
   }
 
-  addChild(createScrew<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
-  addChild(createScrew<ScrewSilver>(
+  addChild(Widget::create<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
+  addChild(Widget::create<ScrewSilver>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-  addInput(createInput<PJ301MPort>(Vec(10, 45), module,
+  addInput(Port::create<PJ301MPort>(Vec(10, 45), Port::INPUT, module,
                                    ClosedHHModule::CLOCK1_INPUT));
-  addParam(createParam<RoundSmallBlackSnapKnob>(
+  addParam(ParamWidget::create<RoundSmallBlackSnapKnob>(
       Vec(8, 92), module, ClosedHHModule::DRUM1_PARAM, 1.0, 15.0, 8.0));
 
-  addOutput(createOutput<PJ301MPort>(Vec(10, 149), module,
+  addOutput(Port::create<PJ301MPort>(Vec(10, 149), Port::OUTPUT, module,
                                      ClosedHHModule::AUDIO1_OUTPUT));
 
-  addInput(createInput<PJ301MPort>(Vec(10, 205), module,
+  addInput(Port::create<PJ301MPort>(Vec(10, 205), Port::INPUT, module,
                                    ClosedHHModule::CLOCK2_INPUT));
-  addParam(createParam<RoundSmallBlackSnapKnob>(
+  addParam(ParamWidget::create<RoundSmallBlackSnapKnob>(
       Vec(8, 252), module, ClosedHHModule::DRUM2_PARAM, 1.0, 15.0, 8.0));
 
-  addOutput(createOutput<PJ301MPort>(Vec(10, 308), module,
+  addOutput(Port::create<PJ301MPort>(Vec(10, 308), Port::OUTPUT, module,
                                      ClosedHHModule::AUDIO2_OUTPUT));
 }
+
+Model *modelClosedHH = Model::create<ClosedHHModule, ClosedHHWidget>("DrumKit", "Closed HiHat", "Closed HiHat");

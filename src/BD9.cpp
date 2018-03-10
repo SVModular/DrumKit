@@ -29,9 +29,11 @@ void BD9Module::setupSamples( ) {
   numSamples = 16;
 }
 
-BD9Widget::BD9Widget( ) {
-  BD9Module *module = new BD9Module( );
-  setModule(module);
+struct BD9Widget : ModuleWidget {
+    BD9Widget(BD9Module *module);
+};
+
+BD9Widget::BD9Widget(BD9Module *module) : ModuleWidget(module) {
   box.size = Vec(3 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT);
 
   {
@@ -41,23 +43,25 @@ BD9Widget::BD9Widget( ) {
     addChild(panel);
   }
 
-  addChild(createScrew<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
-  addChild(createScrew<ScrewSilver>(
+  addChild(Widget::create<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
+  addChild(Widget::create<ScrewSilver>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
   addInput(
-      createInput<PJ301MPort>(Vec(10, 45), module, BD9Module::CLOCK1_INPUT));
-  addParam(createParam<RoundSmallBlackSnapKnob>(
+      Port::create<PJ301MPort>(Vec(10, 45), Port::INPUT, module, BD9Module::CLOCK1_INPUT));
+  addParam(ParamWidget::create<RoundSmallBlackSnapKnob>(
       Vec(8, 92), module, BD9Module::DRUM1_PARAM, 1.0, 16.0, 8.0));
 
   addOutput(
-      createOutput<PJ301MPort>(Vec(10, 149), module, BD9Module::AUDIO1_OUTPUT));
+      Port::create<PJ301MPort>(Vec(10, 149), Port::OUTPUT, module, BD9Module::AUDIO1_OUTPUT));
 
   addInput(
-      createInput<PJ301MPort>(Vec(10, 205), module, BD9Module::CLOCK2_INPUT));
-  addParam(createParam<RoundSmallBlackSnapKnob>(
+      Port::create<PJ301MPort>(Vec(10, 205), Port::INPUT, module, BD9Module::CLOCK2_INPUT));
+  addParam(ParamWidget::create<RoundSmallBlackSnapKnob>(
       Vec(8, 252), module, BD9Module::DRUM2_PARAM, 1.0, 16.0, 8.0));
 
   addOutput(
-      createOutput<PJ301MPort>(Vec(10, 308), module, BD9Module::AUDIO2_OUTPUT));
+      Port::create<PJ301MPort>(Vec(10, 308), Port::OUTPUT, module, BD9Module::AUDIO2_OUTPUT));
 }
+
+Model *modelBD9 = Model::create<BD9Module, BD9Widget>("DrumKit", "Bass Drum 9", "Bass Drum 9");
