@@ -49,7 +49,7 @@ ClosedHHWidget::ClosedHHWidget(ClosedHHModule *module) : ModuleWidget(module) {
 
   addInput(Port::create<PJ301MPort>(Vec(10, 45), Port::INPUT, module,
                                    ClosedHHModule::CLOCK1_INPUT));
-  addParam(ParamWidget::create<RoundSmallBlackSnapKnob>(
+  addParam(ParamWidget::create<RoundBlackSnapKnob>(
       Vec(8, 92), module, ClosedHHModule::DRUM1_PARAM, 1.0, 15.0, 8.0));
 
   addOutput(Port::create<PJ301MPort>(Vec(10, 149), Port::OUTPUT, module,
@@ -57,7 +57,7 @@ ClosedHHWidget::ClosedHHWidget(ClosedHHModule *module) : ModuleWidget(module) {
 
   addInput(Port::create<PJ301MPort>(Vec(10, 205), Port::INPUT, module,
                                    ClosedHHModule::CLOCK2_INPUT));
-  addParam(ParamWidget::create<RoundSmallBlackSnapKnob>(
+  addParam(ParamWidget::create<RoundBlackSnapKnob>(
       Vec(8, 252), module, ClosedHHModule::DRUM2_PARAM, 1.0, 15.0, 8.0));
 
   addOutput(Port::create<PJ301MPort>(Vec(10, 308), Port::OUTPUT, module,

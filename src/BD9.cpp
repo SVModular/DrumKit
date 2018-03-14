@@ -49,7 +49,7 @@ BD9Widget::BD9Widget(BD9Module *module) : ModuleWidget(module) {
 
   addInput(
       Port::create<PJ301MPort>(Vec(10, 45), Port::INPUT, module, BD9Module::CLOCK1_INPUT));
-  addParam(ParamWidget::create<RoundSmallBlackSnapKnob>(
+  addParam(ParamWidget::create<RoundBlackSnapKnob>(
       Vec(8, 92), module, BD9Module::DRUM1_PARAM, 1.0, 16.0, 8.0));
 
   addOutput(
@@ -57,7 +57,7 @@ BD9Widget::BD9Widget(BD9Module *module) : ModuleWidget(module) {
 
   addInput(
       Port::create<PJ301MPort>(Vec(10, 205), Port::INPUT, module, BD9Module::CLOCK2_INPUT));
-  addParam(ParamWidget::create<RoundSmallBlackSnapKnob>(
+  addParam(ParamWidget::create<RoundBlackSnapKnob>(
       Vec(8, 252), module, BD9Module::DRUM2_PARAM, 1.0, 16.0, 8.0));
 
   addOutput(

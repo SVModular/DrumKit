@@ -50,7 +50,7 @@ SnareWidget::SnareWidget(SnareModule *module) : ModuleWidget(module) {
 
   addInput(
       Port::create<PJ301MPort>(Vec(10, 45), Port::INPUT, module, SnareModule::CLOCK1_INPUT));
-  addParam(ParamWidget::create<RoundSmallBlackSnapKnob>(
+  addParam(ParamWidget::create<RoundBlackSnapKnob>(
       Vec(8, 92), module, SnareModule::DRUM1_PARAM, 1.0, 16.0, 8.0));
 
   addOutput(Port::create<PJ301MPort>(Vec(10, 149), Port::OUTPUT, module,
@@ -58,7 +58,7 @@ SnareWidget::SnareWidget(SnareModule *module) : ModuleWidget(module) {
 
   addInput(
       Port::create<PJ301MPort>(Vec(10, 205), Port::INPUT, module, SnareModule::CLOCK2_INPUT));
-  addParam(ParamWidget::create<RoundSmallBlackSnapKnob>(
+  addParam(ParamWidget::create<RoundBlackSnapKnob>(
       Vec(8, 252), module, SnareModule::DRUM2_PARAM, 1.0, 16.0, 8.0));
 
   addOutput(Port::create<PJ301MPort>(Vec(10, 308), Port::OUTPUT, module,
