@@ -63,4 +63,4 @@ OpenHHWidget::OpenHHWidget(OpenHHModule *module) : ModuleWidget(module) {
                                      OpenHHModule::AUDIO2_OUTPUT));
 }
 
-Model *modelOpenHH = Model::create<OpenHHModule, OpenHHWidget>("DrumKit", "Open HiHat", "Open HiHat");
+Model *modelOpenHH = Model::create<OpenHHModule, OpenHHWidget>("DrumKit", "Open HiHat", "Open HiHat", DRUM_TAG);

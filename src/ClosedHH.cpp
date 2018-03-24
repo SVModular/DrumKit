@@ -64,4 +64,4 @@ ClosedHHWidget::ClosedHHWidget(ClosedHHModule *module) : ModuleWidget(module) {
                                      ClosedHHModule::AUDIO2_OUTPUT));
 }
 
-Model *modelClosedHH = Model::create<ClosedHHModule, ClosedHHWidget>("DrumKit", "Closed HiHat", "Closed HiHat");
+Model *modelClosedHH = Model::create<ClosedHHModule, ClosedHHWidget>("DrumKit", "Closed HiHat", "Closed HiHat", DRUM_TAG);

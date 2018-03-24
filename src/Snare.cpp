@@ -65,4 +65,4 @@ SnareWidget::SnareWidget(SnareModule *module) : ModuleWidget(module) {
                                      SnareModule::AUDIO2_OUTPUT));
 }
 
-Model *modelSnare = Model::create<SnareModule, SnareWidget>("DrumKit", "Snare Drum N", "Snare Drum N");
+Model *modelSnare = Model::create<SnareModule, SnareWidget>("DrumKit", "Snare Drum N", "Snare Drum N", DRUM_TAG);

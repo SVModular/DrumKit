@@ -105,4 +105,4 @@ DMXWidget::DMXWidget(DMXModule *module) : ModuleWidget(module) {
 
 }
 
-Model *modelDMX = Model::create<DMXModule, DMXWidget>("DrumKit", "DMX", "DMX");
+Model *modelDMX = Model::create<DMXModule, DMXWidget>("DrumKit", "DMX", "DMX", DRUM_TAG);

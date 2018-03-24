@@ -64,4 +64,4 @@ BD9Widget::BD9Widget(BD9Module *module) : ModuleWidget(module) {
       Port::create<PJ301MPort>(Vec(10, 308), Port::OUTPUT, module, BD9Module::AUDIO2_OUTPUT));
 }
 
-Model *modelBD9 = Model::create<BD9Module, BD9Widget>("DrumKit", "Bass Drum 9", "Bass Drum 9");
+Model *modelBD9 = Model::create<BD9Module, BD9Widget>("DrumKit", "Bass Drum 9", "Bass Drum 9", DRUM_TAG);
