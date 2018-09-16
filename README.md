@@ -12,7 +12,7 @@ Drum Modules for VCVRack.
 
 ### Snare-N
 
-![SNARE](images/SNARE.png)
+![SNARE](images/Snare.png)
 
 16 snare drums based on the Novation Drumstation.
 
