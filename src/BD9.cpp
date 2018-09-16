@@ -4,6 +4,8 @@
 #include "DrumModule.hpp"
 #include "kick.h"
 
+#include "components.hpp"
+
 struct BD9Module : DrumModule {
   void setupSamples( ) override;
 };
@@ -43,25 +45,25 @@ BD9Widget::BD9Widget(BD9Module *module) : ModuleWidget(module) {
     addChild(panel);
   }
 
-  addChild(Widget::create<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
-  addChild(Widget::create<ScrewSilver>(
+  addChild(Widget::create<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
+  addChild(Widget::create<ScrewBlack>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
   addInput(
-      Port::create<PJ301MPort>(Vec(10, 45), Port::INPUT, module, BD9Module::CLOCK1_INPUT));
-  addParam(ParamWidget::create<RoundBlackSnapKnob>(
-      Vec(8, 92), module, BD9Module::DRUM1_PARAM, 1.0, 16.0, 8.0));
+      Port::create<CDPort>(Vec(10, 30), Port::INPUT, module, BD9Module::CLOCK1_INPUT));
+  addParam(ParamWidget::create<LightKnobSnap>(
+      Vec(10, 72.5), module, BD9Module::DRUM1_PARAM, 1.0, 16.0, 8.0));
 
   addOutput(
-      Port::create<PJ301MPort>(Vec(10, 149), Port::OUTPUT, module, BD9Module::AUDIO1_OUTPUT));
+      Port::create<CDPort>(Vec(10, 120), Port::OUTPUT, module, BD9Module::AUDIO1_OUTPUT));
 
   addInput(
-      Port::create<PJ301MPort>(Vec(10, 205), Port::INPUT, module, BD9Module::CLOCK2_INPUT));
-  addParam(ParamWidget::create<RoundBlackSnapKnob>(
-      Vec(8, 252), module, BD9Module::DRUM2_PARAM, 1.0, 16.0, 8.0));
+      Port::create<CDPort>(Vec(10, 220), Port::INPUT, module, BD9Module::CLOCK2_INPUT));
+  addParam(ParamWidget::create<LightKnobSnap>(
+      Vec(10, 262.5), module, BD9Module::DRUM2_PARAM, 0.0, 16.0, 8.0));
 
   addOutput(
-      Port::create<PJ301MPort>(Vec(10, 308), Port::OUTPUT, module, BD9Module::AUDIO2_OUTPUT));
+      Port::create<CDPort>(Vec(10, 310), Port::OUTPUT, module, BD9Module::AUDIO2_OUTPUT));
 }
 
 Model *modelBD9 = Model::create<BD9Module, BD9Widget>("DrumKit", "Bass Drum 9", "Bass Drum 9", DRUM_TAG);

@@ -3,6 +3,8 @@
 #include "DrumKit.hpp"
 #include "dmx.h"
 
+#include "components.hpp"
+
 struct DMXContainer {
   float *sample;
   unsigned int length;
@@ -39,45 +41,74 @@ struct DMXContainer *getNote(float current) {
 
 struct DMXModule : Module {
   enum ParamIds { NUM_PARAMS };
-  enum InputIds { NOTE1_INPUT, NUM_INPUTS };
-  enum OutputIds { AUDIO1_OUTPUT, NUM_OUTPUTS };
+  enum InputIds { NOTE1_INPUT, NOTE2_INPUT, NUM_INPUTS };
+  enum OutputIds { AUDIO1_OUTPUT, AUDIO2_OUTPUT, NUM_OUTPUTS };
   enum LightIds { NUM_LIGHTS };
 
   DMXModule( ) : Module(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS) {
-    currentStep = 0;
-    last = -1;
+    currentStep1 = 0;
+    last1 = -1;
+    currentStep2 = 0;
+    last2 = -1;
   }
 
   void step( ) override;
 
-  uint32_t currentStep;
-  int last;
+  uint32_t currentStep1;
+  int last1;
+  uint32_t currentStep2;
+  int last2;
 };
 
 void DMXModule::step( ) {
   float in1 = inputs[ NOTE1_INPUT ].value;
-  struct DMXContainer *note;
+  struct DMXContainer *note1;
 
   // check the first note
-  note = getNote(in1);
+  note1 = getNote(in1);
 
-  if (note == NULL) {
-    currentStep = 0;
+  if (note1 == NULL) {
+    currentStep1 = 0;
     outputs[ AUDIO1_OUTPUT ].value = 0;
-    last = -1;
+    last1 = -1;
   } else {
-    if (last != note->current) {
-      last = note->current;
-      currentStep = 0;
+    if (last1 != note1->current) {
+      last1 = note1->current;
+      currentStep1 = 0;
     }
 
-    if (currentStep >= note->length) {
+    if (currentStep1 >= note1->length) {
       outputs[ AUDIO1_OUTPUT ].value = 0;
     } else {
-      outputs[ AUDIO1_OUTPUT ].value = note->sample[currentStep];
-      currentStep++;
+      outputs[ AUDIO1_OUTPUT ].value = note1->sample[currentStep1];
+      currentStep1++;
     }
   }
+
+  float in2 = inputs[ NOTE2_INPUT ].value;
+  struct DMXContainer *note2;
+
+  // check the first note
+  note2 = getNote(in2);
+
+  if (note2 == NULL) {
+    currentStep2 = 0;
+    outputs[ AUDIO2_OUTPUT ].value = 0;
+    last2 = -1;
+  } else {
+    if (last2 != note2->current) {
+      last2 = note2->current;
+      currentStep2 = 0;
+    }
+
+    if (currentStep2 >= note2->length) {
+      outputs[ AUDIO2_OUTPUT ].value = 0;
+    } else {
+      outputs[ AUDIO2_OUTPUT ].value = note2->sample[currentStep2];
+      currentStep2++;
+    }
+  }
+
 }
 
 struct DMXWidget : ModuleWidget {
@@ -94,14 +125,18 @@ DMXWidget::DMXWidget(DMXModule *module) : ModuleWidget(module) {
     addChild(panel);
   }
 
-  addChild(Widget::create<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
-  addChild(Widget::create<ScrewSilver>(
+  addChild(Widget::create<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
+  addChild(Widget::create<ScrewBlack>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-  addInput(Port::create<PJ301MPort>(Vec(10, 45), Port::INPUT, module,
+  addInput(Port::create<CDPort>(Vec(10, 30), Port::INPUT, module,
                                    DMXModule::NOTE1_INPUT));
-  addOutput(Port::create<PJ301MPort>(Vec(10, 92), Port::OUTPUT, module,
+  addOutput(Port::create<CDPort>(Vec(10, 120), Port::OUTPUT, module,
                                      DMXModule::AUDIO1_OUTPUT));
+  addInput(Port::create<CDPort>(Vec(10, 220), Port::INPUT, module,
+                                   DMXModule::NOTE2_INPUT));
+  addOutput(Port::create<CDPort>(Vec(10, 310), Port::OUTPUT, module,
+                                     DMXModule::AUDIO2_OUTPUT));
 
 }
 

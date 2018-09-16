@@ -5,6 +5,8 @@
 #include "DrumModule.hpp"
 #include "openhh.h"
 
+#include "components.hpp"
+
 struct OpenHHModule : DrumModule {
   void setupSamples( ) override;
 };
@@ -42,24 +44,24 @@ OpenHHWidget::OpenHHWidget(OpenHHModule *module) : ModuleWidget(module) {
     addChild(panel);
   }
 
-  addChild(Widget::create<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
-  addChild(Widget::create<ScrewSilver>(
+  addChild(Widget::create<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
+  addChild(Widget::create<ScrewBlack>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-  addInput(Port::create<PJ301MPort>(Vec(10, 45), Port::INPUT, module,
+  addInput(Port::create<CDPort>(Vec(10, 30), Port::INPUT, module,
                                    OpenHHModule::CLOCK1_INPUT));
-  addParam(ParamWidget::create<RoundBlackSnapKnob>(
-      Vec(8, 92), module, OpenHHModule::DRUM1_PARAM, 1.0, 14.0, 7.0));
+  addParam(ParamWidget::create<LightKnobSnap>(
+      Vec(10, 72.5), module, OpenHHModule::DRUM1_PARAM, 1.0, 14.0, 7.0));
 
-  addOutput(Port::create<PJ301MPort>(Vec(10, 149), Port::OUTPUT, module,
+  addOutput(Port::create<CDPort>(Vec(10, 120), Port::OUTPUT, module,
                                      OpenHHModule::AUDIO1_OUTPUT));
 
-  addInput(Port::create<PJ301MPort>(Vec(10, 205), Port::INPUT, module,
+  addInput(Port::create<CDPort>(Vec(10, 220), Port::INPUT, module,
                                    OpenHHModule::CLOCK2_INPUT));
-  addParam(ParamWidget::create<RoundBlackSnapKnob>(
-      Vec(8, 252), module, OpenHHModule::DRUM2_PARAM, 1.0, 14.0, 7.0));
+  addParam(ParamWidget::create<LightKnobSnap>(
+      Vec(10, 262.5), module, OpenHHModule::DRUM2_PARAM, 1.0, 14.0, 7.0));
 
-  addOutput(Port::create<PJ301MPort>(Vec(10, 308), Port::OUTPUT, module,
+  addOutput(Port::create<CDPort>(Vec(10, 310), Port::OUTPUT, module,
                                      OpenHHModule::AUDIO2_OUTPUT));
 }
 
