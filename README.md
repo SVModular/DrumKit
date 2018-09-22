@@ -37,6 +37,15 @@ Full DMX Kit, starting at Octave 5, C#, and continuing for 12 steps.
 Anything above/below this will not trigger a note.  If a note is triggered, it
 will not trigger again until a note out of range is sent.
 
+### CR78
+
+![CR79](images/CR78.png)
+
+CompuRhythm-78 Kit, starting at Octave 5, C#, and continuing for 7 steps.
+
+Anything above/below this will not trigger a note.  If a note is triggered, it
+will not trigger again until a note out of range is sent.
+
 This is a very experimental module.
 
 ## Building
