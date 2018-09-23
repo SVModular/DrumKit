@@ -113,6 +113,15 @@ struct LightKnob : CDKnob {
   }
 };
 
+struct LightKnobFull : CDKnob {
+  LightKnobFull() {
+    minAngle = -0.84*M_PI;
+    maxAngle = 0.84*M_PI;
+
+    setSVG(SVG::load(assetPlugin(plugin, "res/Knob.svg")));
+  }
+};
+
 struct LightKnobSnap : LightKnob {
   LightKnobSnap() {
     snap = true;

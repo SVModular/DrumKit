@@ -11,7 +11,7 @@ CXXFLAGS +=
 LDFLAGS +=
 
 # Add .cpp and .c files to the build
-SOURCES += $(wildcard src/*.cpp) $(wildcard deps/SynthDevKit/src/*.cpp)
+SOURCES += $(wildcard src/*.cpp) $(wildcard deps/SynthDevKit/src/*.cpp) $(wildcard deps/*.cpp)
 
 # Add files to the ZIP package when running `make dist`
 # The compiled plugin is automatically added.
