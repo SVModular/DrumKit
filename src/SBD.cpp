@@ -121,10 +121,10 @@ SBDWidget::SBDWidget(SBDModule *module) : ModuleWidget(module) {
     addChild(panel);
   }
 
-  addChild(Widget::create<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
-  addChild(Widget::create<ScrewBlack>(
-      Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
-
+  addChild(Widget::create<ScrewBlack>(Vec(15, 0)));
+  addChild(Widget::create<ScrewBlack>(Vec(box.size.x-30, 0)));
+  addChild(Widget::create<ScrewBlack>(Vec(15, 365)));
+  addChild(Widget::create<ScrewBlack>(Vec(box.size.x-30, 365)));
 
   addParam(ParamWidget::create<LightKnobFull>(
       Vec(10, 57.5), module, SBDModule::PITCH_PARAM, -5.0, 5.0, 0.0));
