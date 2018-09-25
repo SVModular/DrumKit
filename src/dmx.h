@@ -1100,7 +1100,6 @@ const float dmx1[] = {
   0.000610,  -0.000458, 0.000458
 };
 
-unsigned int dmx1_len = 7689;
 
 const float dmx2[] = {
   -0.001373, 0.034027,  0.073395,  0.072784,  0.050049,  0.067291,  0.143433,
@@ -9847,7 +9846,6 @@ const float dmx2[] = {
   -0.000610, 0.000763,  -0.000763
 };
 
-unsigned int dmx2_len = 61190;
 
 const float dmx3[] = {
   -0.000305, 0.012817,  0.046234,  0.066986,  0.028381,  -0.053864, -0.095367,
@@ -10702,7 +10700,6 @@ const float dmx3[] = {
   0.000916,  -0.000916, 0.000763,  -0.000458
 };
 
-unsigned int dmx3_len = 5947;
 
 const float dmx4[] = {
   -0.003662, 0.083008,  0.125885,  0.061951,  -0.056610, -0.141296, -0.111542,
@@ -11540,7 +11537,6 @@ const float dmx4[] = {
   0.000305,  -0.000610, 0.000763,  -0.000916, 0.000763,  -0.000610, 0.000305
 };
 
-unsigned int dmx4_len = 5831;
 
 const float dmx5[] = {
   0.007477,  -0.157013, -0.135498, 0.033264,  0.201416,  0.296783,  0.222778,
@@ -18424,7 +18420,6 @@ const float dmx5[] = {
   0.000153,  0.000000
 };
 
-unsigned int dmx5_len = 48148;
 
 const float dmx6[] = {
   -0.005646, 0.136261,  0.199738,  -0.096588, -0.360107, -0.078430, 0.181580,
@@ -19017,7 +19012,6 @@ const float dmx6[] = {
   0.000000
 };
 
-unsigned int dmx6_len = 4110;
 
 const float dmx7[] = {
   -0.003357, 0.088196,  0.174713,  0.011139,  -0.337524, -0.297089, 0.178070,
@@ -20120,7 +20114,6 @@ const float dmx7[] = {
   0.000153,  0.000000,  -0.000305, 0.000610
 };
 
-unsigned int dmx7_len = 7683;
 
 const float dmx8[] = {
   -0.000763, 0.023499,  0.102539,  0.132599,  -0.072327, -0.335999, -0.149078,
@@ -21295,7 +21288,6 @@ const float dmx8[] = {
   -0.000916, 0.000916,  -0.000610, 0.000153
 };
 
-unsigned int dmx8_len = 8187;
 
 const float dmx9[] = {
   0.000610,  -0.017395, -0.046997, -0.042725, 0.070343,  0.358582,  0.728607,
@@ -21824,7 +21816,6 @@ const float dmx9[] = {
   0.000458,  -0.000610, 0.000610
 };
 
-unsigned int dmx9_len = 3664;
 
 const float dmx10[] = {
   0.000305,  -0.010223, -0.041046, -0.083923, -0.169983, -0.326996, -0.505219,
@@ -26307,7 +26298,6 @@ const float dmx10[] = {
   0.000153,  -0.000305, 0.000610,  -0.000610, 0.000458,  -0.000458
 };
 
-unsigned int dmx10_len = 31345;
 
 const float dmx11[] = {
   -0.000458, 0.011597,  0.021973,  0.039673,  0.070190,  0.121155,  0.214386,
@@ -27018,7 +27008,6 @@ const float dmx11[] = {
   -0.000153, 0.000305,  -0.000305, 0.000153,  -0.000305, 0.000153
 };
 
-unsigned int dmx11_len = 4941;
 
 const float dmx12[] = {
   -0.000763, 0.018311,  0.051270,  0.137329,  0.272369,  0.425568,  0.575867,
@@ -27911,4 +27900,15 @@ const float dmx12[] = {
   0.000458,  -0.000153, 0.000153,  0.000000,  0.000000,  0.000000
 };
 
-unsigned int dmx12_len = 6215;
+extern unsigned int dmx1_len;
+extern unsigned int dmx2_len;
+extern unsigned int dmx3_len;
+extern unsigned int dmx4_len;
+extern unsigned int dmx5_len;
+extern unsigned int dmx6_len;
+extern unsigned int dmx7_len;
+extern unsigned int dmx8_len;
+extern unsigned int dmx9_len;
+extern unsigned int dmx10_len;
+extern unsigned int dmx11_len;
+extern unsigned int dmx12_len;

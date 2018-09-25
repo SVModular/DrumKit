@@ -21,6 +21,7 @@ void init(rack::Plugin *p) {
 	p->addModel(modelDMX);
   p->addModel(modelCR78);
   p->addModel(modelSBD);
+  p->addModel(modelDMXmk2);
 
   // Any other plugin initialization may go here.
   // As an alternative, consider lazy-loading assets and lookup tables when your

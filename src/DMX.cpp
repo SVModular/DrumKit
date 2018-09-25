@@ -5,6 +5,19 @@
 
 #include "components.hpp"
 
+unsigned int dmx1_len = 7689;
+unsigned int dmx2_len = 61190;
+unsigned int dmx3_len = 5947;
+unsigned int dmx4_len = 5831;
+unsigned int dmx5_len = 48148;
+unsigned int dmx6_len = 4110;
+unsigned int dmx7_len = 7683;
+unsigned int dmx8_len = 8187;
+unsigned int dmx9_len = 3664;
+unsigned int dmx10_len = 31345;
+unsigned int dmx11_len = 4941;
+unsigned int dmx12_len = 6215;
+
 struct DMXContainer {
   float *sample;
   unsigned int length;
