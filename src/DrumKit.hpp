@@ -15,3 +15,4 @@ extern Model *modelDMX;
 extern Model *modelCR78;
 extern Model *modelSBD;
 extern Model *modelDMXmk2;
+extern Model *modelCR78mk2;

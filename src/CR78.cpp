@@ -5,6 +5,14 @@
 
 #include "components.hpp"
 
+unsigned int cr781_len = 5672;
+unsigned int cr782_len = 3064;
+unsigned int cr783_len = 5840;
+unsigned int cr784_len = 15105;
+unsigned int cr785_len = 2356;
+unsigned int cr786_len = 2577;
+unsigned int cr787_len = 18005;
+
 struct CR78Container {
   float *sample;
   unsigned int length;
