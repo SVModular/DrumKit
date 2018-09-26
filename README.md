@@ -59,8 +59,8 @@ Synthetic Bass Drum, with a submodulator.
 A less experimental version of the DMX module.  It contains a DMX kit, that is
 accessible by 1 of the 12 samples via the `V/OCT` input, with Octave 4, C# as the
 first.  Unlike the DMX module, it is triggered when `GATE` is brought up to or above
-`1.7v`.  In addition, you can control the tone by either adjusting the `TONE`
-knob, or via the `TONE CV` input.
+`1.7v`.  In addition, you can control the tone by either adjusting the `TUNE`
+knob, or via the `TUNE CV` input.
 
 ### CR78 mk2
 
@@ -69,8 +69,8 @@ knob, or via the `TONE CV` input.
 A less experimental version of the CR78 module.  It contains a CR78 kit, that is
 accessible by 1 of the 7 samples via the `V/OCT` input, with Octave 4, C# as the
 first.  Unlike the CR78 module, it is triggered when `GATE` is brought up to or above
-`1.7v`.  In addition, you can control the tone by either adjusting the `TONE`
-knob, or via the `TONE CV` input.
+`1.7v`.  In addition, you can control the tone by either adjusting the `TUNE`
+knob, or via the `TUNE CV` input.
 
 ## Building
 
