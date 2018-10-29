@@ -56,10 +56,10 @@ CR78mk2Widget::CR78mk2Widget(CR78mk2Module *module) : ModuleWidget(module) {
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
   addInput(Port::create<CDPort>(Vec(10, 62.6), Port::INPUT, module,
-                                   CR78mk2Module::GATE_INPUT));
+                                   CR78mk2Module::VOCT_INPUT));
 
   addInput(Port::create<CDPort>(Vec(10, 122.5), Port::INPUT, module,
-                                   CR78mk2Module::VOCT_INPUT));
+                                   CR78mk2Module::GATE_INPUT));
 
   addParam(ParamWidget::create<LightKnobFull>(
       Vec(10, 177.5), module, CR78mk2Module::TUNE_PARAM, 0.6, 1.4, 1.0));

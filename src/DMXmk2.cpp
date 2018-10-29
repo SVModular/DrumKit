@@ -61,10 +61,10 @@ DMXmk2Widget::DMXmk2Widget(DMXmk2Module *module) : ModuleWidget(module) {
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
   addInput(Port::create<CDPort>(Vec(10, 62.6), Port::INPUT, module,
-                                   DMXmk2Module::GATE_INPUT));
+                                   DMXmk2Module::VOCT_INPUT));
 
   addInput(Port::create<CDPort>(Vec(10, 122.5), Port::INPUT, module,
-                                   DMXmk2Module::VOCT_INPUT));
+                                   DMXmk2Module::GATE_INPUT));
 
   addParam(ParamWidget::create<LightKnobFull>(
       Vec(10, 177.5), module, DMXmk2Module::TUNE_PARAM, 0.6, 1.4, 1.0));
