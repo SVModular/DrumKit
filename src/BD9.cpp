@@ -41,29 +41,29 @@ BD9Widget::BD9Widget(BD9Module *module) : ModuleWidget(module) {
   {
     SVGPanel *panel = new SVGPanel( );
     panel->box.size = box.size;
-    panel->setBackground(SVG::load(assetPlugin(plugin, "res/BD9.svg")));
+    panel->setBackground(SVG::load(assetPlugin(pluginInstance, "res/BD9.svg")));
     addChild(panel);
   }
 
-  addChild(Widget::create<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
-  addChild(Widget::create<ScrewBlack>(
+  addChild(createWidget<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
+  addChild(createWidget<ScrewBlack>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
   addInput(
-      Port::create<CDPort>(Vec(10, 30), Port::INPUT, module, BD9Module::CLOCK1_INPUT));
-  addParam(ParamWidget::create<LightKnobSnap>(
+      createPort<CDPort>(Vec(10, 30), PortWidget::INPUT, module, BD9Module::CLOCK1_INPUT));
+  addParam(createParam<LightKnobSnap>(
       Vec(10, 72.5), module, BD9Module::DRUM1_PARAM, 1.0, 16.0, 8.0));
 
   addOutput(
-      Port::create<CDPort>(Vec(10, 120), Port::OUTPUT, module, BD9Module::AUDIO1_OUTPUT));
+      createPort<CDPort>(Vec(10, 120), PortWidget::OUTPUT, module, BD9Module::AUDIO1_OUTPUT));
 
   addInput(
-      Port::create<CDPort>(Vec(10, 220), Port::INPUT, module, BD9Module::CLOCK2_INPUT));
-  addParam(ParamWidget::create<LightKnobSnap>(
+      createPort<CDPort>(Vec(10, 220), PortWidget::INPUT, module, BD9Module::CLOCK2_INPUT));
+  addParam(createParam<LightKnobSnap>(
       Vec(10, 262.5), module, BD9Module::DRUM2_PARAM, 0.0, 16.0, 8.0));
 
   addOutput(
-      Port::create<CDPort>(Vec(10, 310), Port::OUTPUT, module, BD9Module::AUDIO2_OUTPUT));
+      createPort<CDPort>(Vec(10, 310), PortWidget::OUTPUT, module, BD9Module::AUDIO2_OUTPUT));
 }
 
-Model *modelBD9 = Model::create<BD9Module, BD9Widget>("DrumKit", "Bass Drum 9", "Bass Drum 9", DRUM_TAG);
+Model *modelBD9 = createModel<BD9Module, BD9Widget>("BassDrum9");

@@ -117,50 +117,50 @@ SBDWidget::SBDWidget(SBDModule *module) : ModuleWidget(module) {
   {
     SVGPanel *panel = new SVGPanel( );
     panel->box.size = box.size;
-    panel->setBackground(SVG::load(assetPlugin(plugin, "res/SBD.svg")));
+    panel->setBackground(SVG::load(assetPlugin(pluginInstance, "res/SBD.svg")));
     addChild(panel);
   }
 
-  addChild(Widget::create<ScrewBlack>(Vec(15, 0)));
-  addChild(Widget::create<ScrewBlack>(Vec(box.size.x-30, 0)));
-  addChild(Widget::create<ScrewBlack>(Vec(15, 365)));
-  addChild(Widget::create<ScrewBlack>(Vec(box.size.x-30, 365)));
+  addChild(createWidget<ScrewBlack>(Vec(15, 0)));
+  addChild(createWidget<ScrewBlack>(Vec(box.size.x-30, 0)));
+  addChild(createWidget<ScrewBlack>(Vec(15, 365)));
+  addChild(createWidget<ScrewBlack>(Vec(box.size.x-30, 365)));
 
-  addParam(ParamWidget::create<LightKnobFull>(
+  addParam(createParam<LightKnobFull>(
       Vec(10, 57.5), module, SBDModule::PITCH_PARAM, -5.0, 5.0, 0.0));
-  addInput(Port::create<CDPort>(Vec(10, 122.5), Port::INPUT, module,
+  addInput(createPort<CDPort>(Vec(10, 122.5), PortWidget::INPUT, module,
                                    SBDModule::PITCH_CV_INPUT));
 
-  addParam(ParamWidget::create<LightKnobFull>(
+  addParam(createParam<LightKnobFull>(
       Vec(55, 57.5), module, SBDModule::PITCH_DECAY_PARAM, -0.2, 1.2, 0.5));
-  addInput(Port::create<CDPort>(Vec(55, 122.5), Port::INPUT, module,
+  addInput(createPort<CDPort>(Vec(55, 122.5), PortWidget::INPUT, module,
                                    SBDModule::PITCH_DECAY_CV_INPUT));
 
-  addParam(ParamWidget::create<LightKnobFull>(
+  addParam(createParam<LightKnobFull>(
       Vec(100, 57.5), module, SBDModule::AMP_DECAY_PARAM, -5.0, 5.0, 0.0));
-  addInput(Port::create<CDPort>(Vec(100, 122.5), Port::INPUT, module,
+  addInput(createPort<CDPort>(Vec(100, 122.5), PortWidget::INPUT, module,
                                    SBDModule::AMP_DECAY_CV_INPUT));
 
-  addParam(ParamWidget::create<LightKnobFull>(
+  addParam(createParam<LightKnobFull>(
       Vec(10, 177.5), module, SBDModule::SUBOCT_MIX_PARAM, 0.0, 1.0, 0.5));
 
-  addParam(ParamWidget::create<LightKnobFull>(
+  addParam(createParam<LightKnobFull>(
       Vec(55, 177.5), module, SBDModule::DRIVE_PARAM, 0.0, 10.0, 5.0));
 
-  addParam(ParamWidget::create<LightKnobFull>(
+  addParam(createParam<LightKnobFull>(
       Vec(100, 177.5), module, SBDModule::CLICK_PARAM, 0.0, 2.5, 1.25));
 
-  addParam(ParamWidget::create<CKSSThree>(
+  addParam(createParam<CKSSThree>(
       Vec(22, 231.5), module, SBDModule::SUBOCT_PARAM, 0.0, 2.0, 0.0));
 
-  addParam(ParamWidget::create<CKSS>(
+  addParam(createParam<CKSS>(
       Vec(89.5, 236.5), module, SBDModule::WAVE_PARAM, 0.0, 1.0, 1.0));
 
-  addInput(Port::create<CDPort>(Vec(22, 302.5), Port::INPUT, module,
+  addInput(createPort<CDPort>(Vec(22, 302.5), PortWidget::INPUT, module,
                                    SBDModule::GATE_INPUT));
-  addOutput(Port::create<CDPort>(Vec(88, 302.5), Port::OUTPUT, module,
+  addOutput(createPort<CDPort>(Vec(88, 302.5), PortWidget::OUTPUT, module,
                                    SBDModule::AUDIO_OUTPUT));
 
 }
 
-Model *modelSBD = Model::create<SBDModule, SBDWidget>("DrumKit", "Synthetic Bass Drum", "Synthetic Bass Drum", DRUM_TAG);
+Model *modelSBD = createModel<SBDModule, SBDWidget>("SyntheticBassDrum");

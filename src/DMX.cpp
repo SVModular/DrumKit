@@ -134,23 +134,23 @@ DMXWidget::DMXWidget(DMXModule *module) : ModuleWidget(module) {
   {
     SVGPanel *panel = new SVGPanel( );
     panel->box.size = box.size;
-    panel->setBackground(SVG::load(assetPlugin(plugin, "res/DMX.svg")));
+    panel->setBackground(SVG::load(assetPlugin(pluginInstance, "res/DMX.svg")));
     addChild(panel);
   }
 
-  addChild(Widget::create<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
-  addChild(Widget::create<ScrewBlack>(
+  addChild(createWidget<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
+  addChild(createWidget<ScrewBlack>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-  addInput(Port::create<CDPort>(Vec(10, 30), Port::INPUT, module,
+  addInput(createPort<CDPort>(Vec(10, 30), PortWidget::INPUT, module,
                                    DMXModule::NOTE1_INPUT));
-  addOutput(Port::create<CDPort>(Vec(10, 120), Port::OUTPUT, module,
+  addOutput(createPort<CDPort>(Vec(10, 120), PortWidget::OUTPUT, module,
                                      DMXModule::AUDIO1_OUTPUT));
-  addInput(Port::create<CDPort>(Vec(10, 220), Port::INPUT, module,
+  addInput(createPort<CDPort>(Vec(10, 220), PortWidget::INPUT, module,
                                    DMXModule::NOTE2_INPUT));
-  addOutput(Port::create<CDPort>(Vec(10, 310), Port::OUTPUT, module,
+  addOutput(createPort<CDPort>(Vec(10, 310), PortWidget::OUTPUT, module,
                                      DMXModule::AUDIO2_OUTPUT));
 
 }
 
-Model *modelDMX = Model::create<DMXModule, DMXWidget>("DrumKit", "DMX", "DMX", DRUM_TAG);
+Model *modelDMX = createModel<DMXModule, DMXWidget>("DMX");

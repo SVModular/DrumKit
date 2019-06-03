@@ -40,29 +40,29 @@ OpenHHWidget::OpenHHWidget(OpenHHModule *module) : ModuleWidget(module) {
   {
     SVGPanel *panel = new SVGPanel( );
     panel->box.size = box.size;
-    panel->setBackground(SVG::load(assetPlugin(plugin, "res/OpenHH.svg")));
+    panel->setBackground(SVG::load(assetPlugin(pluginInstance, "res/OpenHH.svg")));
     addChild(panel);
   }
 
-  addChild(Widget::create<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
-  addChild(Widget::create<ScrewBlack>(
+  addChild(createWidget<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
+  addChild(createWidget<ScrewBlack>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-  addInput(Port::create<CDPort>(Vec(10, 30), Port::INPUT, module,
+  addInput(createPort<CDPort>(Vec(10, 30), PortWidget::INPUT, module,
                                    OpenHHModule::CLOCK1_INPUT));
-  addParam(ParamWidget::create<LightKnobSnap>(
+  addParam(createParam<LightKnobSnap>(
       Vec(10, 72.5), module, OpenHHModule::DRUM1_PARAM, 1.0, 14.0, 7.0));
 
-  addOutput(Port::create<CDPort>(Vec(10, 120), Port::OUTPUT, module,
+  addOutput(createPort<CDPort>(Vec(10, 120), PortWidget::OUTPUT, module,
                                      OpenHHModule::AUDIO1_OUTPUT));
 
-  addInput(Port::create<CDPort>(Vec(10, 220), Port::INPUT, module,
+  addInput(createPort<CDPort>(Vec(10, 220), PortWidget::INPUT, module,
                                    OpenHHModule::CLOCK2_INPUT));
-  addParam(ParamWidget::create<LightKnobSnap>(
+  addParam(createParam<LightKnobSnap>(
       Vec(10, 262.5), module, OpenHHModule::DRUM2_PARAM, 1.0, 14.0, 7.0));
 
-  addOutput(Port::create<CDPort>(Vec(10, 310), Port::OUTPUT, module,
+  addOutput(createPort<CDPort>(Vec(10, 310), PortWidget::OUTPUT, module,
                                      OpenHHModule::AUDIO2_OUTPUT));
 }
 
-Model *modelOpenHH = Model::create<OpenHHModule, OpenHHWidget>("DrumKit", "Open HiHat", "Open HiHat", DRUM_TAG);
+Model *modelOpenHH = createModel<OpenHHModule, OpenHHWidget>("OpenHiHat");

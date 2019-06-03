@@ -52,28 +52,28 @@ DMXmk2Widget::DMXmk2Widget(DMXmk2Module *module) : ModuleWidget(module) {
   {
     SVGPanel *panel = new SVGPanel( );
     panel->box.size = box.size;
-    panel->setBackground(SVG::load(assetPlugin(plugin, "res/DMXmk2.svg")));
+    panel->setBackground(SVG::load(assetPlugin(pluginInstance, "res/DMXmk2.svg")));
     addChild(panel);
   }
 
-  addChild(Widget::create<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
-  addChild(Widget::create<ScrewBlack>(
+  addChild(createWidget<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
+  addChild(createWidget<ScrewBlack>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-  addInput(Port::create<CDPort>(Vec(10, 62.6), Port::INPUT, module,
+  addInput(createPort<CDPort>(Vec(10, 62.6), PortWidget::INPUT, module,
                                    DMXmk2Module::VOCT_INPUT));
 
-  addInput(Port::create<CDPort>(Vec(10, 122.5), Port::INPUT, module,
+  addInput(createPort<CDPort>(Vec(10, 122.5), PortWidget::INPUT, module,
                                    DMXmk2Module::GATE_INPUT));
 
-  addParam(ParamWidget::create<LightKnobFull>(
+  addParam(createParam<LightKnobFull>(
       Vec(10, 177.5), module, DMXmk2Module::TUNE_PARAM, 0.6, 1.4, 1.0));
-  addInput(Port::create<CDPort>(Vec(10, 242.5), Port::INPUT, module,
+  addInput(createPort<CDPort>(Vec(10, 242.5), PortWidget::INPUT, module,
                                    DMXmk2Module::TUNE_CV_INPUT));
 
-  addOutput(Port::create<CDPort>(Vec(10, 302.5), Port::OUTPUT, module,
+  addOutput(createPort<CDPort>(Vec(10, 302.5), PortWidget::OUTPUT, module,
                                      DMXmk2Module::AUDIO_OUTPUT));
 
 }
 
-Model *modelDMXmk2 = Model::create<DMXmk2Module, DMXmk2Widget>("DrumKit", "DMX mk2", "DMX mk2", DRUM_TAG);
+Model *modelDMXmk2 = createModel<DMXmk2Module, DMXmk2Widget>("DMXmk2");

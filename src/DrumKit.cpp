@@ -4,13 +4,7 @@
 Plugin *plugin;
 
 void init(rack::Plugin *p) {
-  plugin = p;
-  // This is the unique identifier for your plugin
-  p->slug = TOSTRING(SLUG);
-  p->version = TOSTRING(VERSION);
-  p->website = "https://github.com/JerrySievert/DrumKit";
-  p->manual  = "https://github.com/JerrySievert/DrumKit/blob/master/README.md";
-
+  pluginInstance = p;
   // For each module, specify the ModuleWidget subclass, manufacturer slug (for
   // saving in patches), manufacturer human-readable name, module slug, and
   // module name

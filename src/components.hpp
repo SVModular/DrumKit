@@ -95,12 +95,12 @@ public:
     shadow.setBox(box);
   }
 
-  void draw(NVGcontext *vg) override {
+  void draw(const DrawArgs &args) override {
     /** shadow */
-    shadow.draw(vg);
+    shadow.draw(args.vg);
 
     /** component */
-    FramebufferWidget::draw(vg);
+    app::SvgKnob::draw(args);
   }
 };
 
@@ -109,7 +109,7 @@ struct LightKnob : CDKnob {
     minAngle = -0.65*M_PI;
     maxAngle = 0.65*M_PI;
 
-    setSVG(SVG::load(assetPlugin(plugin, "res/Knob.svg")));
+    setSVG(SVG::load(assetPlugin(pluginInstance, "res/Knob.svg")));
   }
 };
 
@@ -118,7 +118,7 @@ struct LightKnobFull : CDKnob {
     minAngle = -0.84*M_PI;
     maxAngle = 0.84*M_PI;
 
-    setSVG(SVG::load(assetPlugin(plugin, "res/Knob.svg")));
+    setSVG(SVG::load(assetPlugin(pluginInstance, "res/Knob.svg")));
   }
 };
 
@@ -130,7 +130,7 @@ struct LightKnobSnap : LightKnob {
 
 struct LightKnobSmall : CDKnob {
   LightKnobSmall() {
-    setSVG(SVG::load(assetPlugin(plugin, "res/KnobSMall.svg")));
+    setSVG(SVG::load(assetPlugin(pluginInstance, "res/KnobSMall.svg")));
   }
 };
 
@@ -140,9 +140,7 @@ private:
 
 public:
   CDPort() {
-    background->svg = SVG::load(assetPlugin(plugin, "res/Port.svg"));
-    background->wrap();
-    box.size = background->box.size;
+    setSvg(APP->window->loadSvg(asset::plugin(pluginInstance, "res/Port.svg")));
 
     /** inherit dimensions */
     shadow.setBox(box);
@@ -150,8 +148,8 @@ public:
     shadow.setShadowPosition(2, 1);
   }
 
-  void draw(NVGcontext *vg) override {
-    shadow.draw(vg);
-    SVGPort::draw(vg);
+  void draw(const DrawArgs &args) override {
+    shadow.draw(args.vg);
+    SVGPort::draw(args);
   }
 };
