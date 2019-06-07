@@ -19,7 +19,7 @@ struct VDrumModule : Module {
   enum LightIds { NUM_LIGHTS };
 
   VDrumModule( );
-  void step( ) override;
+  void process(const ProcessArgs &) override;
   virtual void setupSamples( );
   virtual struct VDrumContainer *getSample(float);
   float getSampleValue(double, float);

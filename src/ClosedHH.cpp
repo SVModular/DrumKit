@@ -7,8 +7,15 @@
 #include "components.hpp"
 
 struct ClosedHHModule : DrumModule {
+  ClosedHHModule();
   void setupSamples( ) override;
 };
+
+ClosedHHModule::ClosedHHModule() {
+  config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
+  configParam(ClosedHHModule::DRUM1_PARAM, 1.0, 15.0, 8.0);
+  configParam(ClosedHHModule::DRUM2_PARAM, 1.0, 15.0, 8.0);
+}
 
 void ClosedHHModule::setupSamples( ) {
   samples[0] = { (float *)closedhh1, closedhh1_len };
@@ -34,34 +41,31 @@ struct ClosedHHWidget : ModuleWidget {
     ClosedHHWidget(ClosedHHModule *module);
 };
 
-ClosedHHWidget::ClosedHHWidget(ClosedHHModule *module) : ModuleWidget(module) {
+ClosedHHWidget::ClosedHHWidget(ClosedHHModule *module) {
+		setModule(module);
   box.size = Vec(3 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT);
 
-  {
-    SVGPanel *panel = new SVGPanel( );
-    panel->box.size = box.size;
-    panel->setBackground(SVG::load(assetPlugin(pluginInstance, "res/ClosedHH.svg")));
-    addChild(panel);
-  }
+  setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/ClosedHH.svg")));
+
 
   addChild(createWidget<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
   addChild(createWidget<ScrewBlack>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-  addInput(createPort<CDPort>(Vec(10, 30), PortWidget::INPUT, module,
+  addInput(createInput<CDPort>(Vec(10, 30), module,
                                    ClosedHHModule::CLOCK1_INPUT));
   addParam(createParam<LightKnobSnap>(
-      Vec(10, 72.5), module, ClosedHHModule::DRUM1_PARAM, 1.0, 15.0, 8.0));
+      Vec(10, 72.5), module, ClosedHHModule::DRUM1_PARAM));
 
-  addOutput(createPort<CDPort>(Vec(10, 120), PortWidget::OUTPUT, module,
+  addOutput(createOutput<CDPort>(Vec(10, 120), module,
                                      ClosedHHModule::AUDIO1_OUTPUT));
 
-  addInput(createPort<CDPort>(Vec(10, 220), PortWidget::INPUT, module,
+  addInput(createInput<CDPort>(Vec(10, 220), module,
                                    ClosedHHModule::CLOCK2_INPUT));
   addParam(createParam<LightKnobSnap>(
-      Vec(10, 262.5), module, ClosedHHModule::DRUM2_PARAM, 1.0, 15.0, 8.0));
+      Vec(10, 262.5), module, ClosedHHModule::DRUM2_PARAM));
 
-  addOutput(createPort<CDPort>(Vec(10, 310), PortWidget::OUTPUT, module,
+  addOutput(createOutput<CDPort>(Vec(10, 310), module,
                                      ClosedHHModule::AUDIO2_OUTPUT));
 }
 

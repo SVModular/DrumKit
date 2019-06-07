@@ -6,7 +6,8 @@
 #include "VDrumModule.hpp"
 
 
-VDrumModule::VDrumModule( ) : Module(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS) {
+VDrumModule::VDrumModule( ) : Module() {
+  config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
   cv          = new SynthDevKit::CV(1.7f);
   currentStep = 0;
   numSamples  = 0;
@@ -25,9 +26,9 @@ struct VDrumContainer *VDrumModule::getSample(float current) {
   return &samples[ (int)current - 1 ];
 }
 
-void VDrumModule::step( ) {
+void VDrumModule::process(const ProcessArgs &args) {
   // attenuation value
-  float gate = inputs[ GATE_INPUT ].value;
+  float gate = inputs[ GATE_INPUT ].getVoltage();
   cv->update(gate);
 
   if (cv->newTrigger( )) {
@@ -36,13 +37,13 @@ void VDrumModule::step( ) {
   }
 
   if (playing) {
-    float current           = inputs[ VOCT_INPUT ].value;
+    float current           = inputs[ VOCT_INPUT ].getVoltage();
 
-    float tune = clamp(params[TUNE_PARAM].value + (inputs[TUNE_CV_INPUT].active ? inputs[TUNE_CV_INPUT].value : 0.0f), 0.2, 1.8);
-    outputs[ AUDIO_OUTPUT ].value = getSampleValue(current, tune);
+    float tune = clamp(params[TUNE_PARAM].getValue() + (inputs[TUNE_CV_INPUT].isConnected() ? inputs[TUNE_CV_INPUT].getVoltage() : 0.0f), 0.2, 1.8);
+    outputs[ AUDIO_OUTPUT ].setVoltage(getSampleValue(current, tune));
     currentStep += tune;
   } else {
-    outputs[AUDIO_OUTPUT].value = 0.0f;
+    outputs[AUDIO_OUTPUT].setVoltage(0.0f);
   }
 }
 

@@ -7,8 +7,15 @@
 #include "components.hpp"
 
 struct SnareModule : DrumModule {
+  SnareModule();
   void setupSamples( ) override;
 };
+
+SnareModule::SnareModule() {
+  config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
+  configParam(SnareModule::DRUM1_PARAM, 1.0, 16.0, 8.0);
+  configParam(SnareModule::DRUM2_PARAM, 1.0, 16.0, 8.0);
+}
 
 void SnareModule::setupSamples( ) {
   samples[0] = { (float *)snare1, snare1_len };
@@ -35,34 +42,30 @@ struct SnareWidget : ModuleWidget {
     SnareWidget(SnareModule *module);
 };
 
-SnareWidget::SnareWidget(SnareModule *module) : ModuleWidget(module) {
+SnareWidget::SnareWidget(SnareModule *module) {
+		setModule(module);
   box.size = Vec(3 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT);
 
-  {
-    SVGPanel *panel = new SVGPanel( );
-    panel->box.size = box.size;
-    panel->setBackground(SVG::load(assetPlugin(pluginInstance, "res/Snare.svg")));
-    addChild(panel);
-  }
+  setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/Snare.svg")));
 
   addChild(createWidget<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
   addChild(createWidget<ScrewBlack>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
   addInput(
-      createPort<CDPort>(Vec(10, 30), PortWidget::INPUT, module, SnareModule::CLOCK1_INPUT));
+      createInput<CDPort>(Vec(10, 30), module, SnareModule::CLOCK1_INPUT));
   addParam(createParam<LightKnobSnap>(
-      Vec(10, 72.5), module, SnareModule::DRUM1_PARAM, 1.0, 16.0, 8.0));
+      Vec(10, 72.5), module, SnareModule::DRUM1_PARAM));
 
-  addOutput(createPort<CDPort>(Vec(10, 120), PortWidget::OUTPUT, module,
+  addOutput(createOutput<CDPort>(Vec(10, 120), module,
                                      SnareModule::AUDIO1_OUTPUT));
 
   addInput(
-      createPort<CDPort>(Vec(10, 220), PortWidget::INPUT, module, SnareModule::CLOCK2_INPUT));
+      createInput<CDPort>(Vec(10, 220), module, SnareModule::CLOCK2_INPUT));
   addParam(createParam<LightKnobSnap>(
-      Vec(10, 262.5), module, SnareModule::DRUM2_PARAM, 1.0, 16.0, 8.0));
+      Vec(10, 262.5), module, SnareModule::DRUM2_PARAM));
 
-  addOutput(createPort<CDPort>(Vec(10, 310), PortWidget::OUTPUT, module,
+  addOutput(createOutput<CDPort>(Vec(10, 310), module,
                                      SnareModule::AUDIO2_OUTPUT));
 }
 

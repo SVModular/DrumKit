@@ -84,13 +84,18 @@ public:
   };
 };
 
-struct CDKnob : RoundKnob {
+struct CDKnob : app::SvgKnob {
 protected:
   CDShadow shadow = CDShadow();
 
 public:
+  CDKnob() {
+		minAngle = -0.83*M_PI;
+		maxAngle = 0.83*M_PI;
+	}
+
   void setSVG(std::shared_ptr<SVG> svg) {
-    RoundKnob::setSVG(svg);
+    app::SvgKnob::setSVG(svg);
 
     shadow.setBox(box);
   }
@@ -109,7 +114,7 @@ struct LightKnob : CDKnob {
     minAngle = -0.65*M_PI;
     maxAngle = 0.65*M_PI;
 
-    setSVG(SVG::load(assetPlugin(pluginInstance, "res/Knob.svg")));
+    setSVG(APP->window->loadSvg(asset::plugin(pluginInstance, "res/Knob.svg")));
   }
 };
 
@@ -118,7 +123,7 @@ struct LightKnobFull : CDKnob {
     minAngle = -0.84*M_PI;
     maxAngle = 0.84*M_PI;
 
-    setSVG(SVG::load(assetPlugin(pluginInstance, "res/Knob.svg")));
+    setSVG(APP->window->loadSvg(asset::plugin(pluginInstance, "res/Knob.svg")));
   }
 };
 
@@ -130,11 +135,11 @@ struct LightKnobSnap : LightKnob {
 
 struct LightKnobSmall : CDKnob {
   LightKnobSmall() {
-    setSVG(SVG::load(assetPlugin(pluginInstance, "res/KnobSMall.svg")));
+    setSVG(APP->window->loadSvg(asset::plugin(pluginInstance, "res/KnobSMall.svg")));
   }
 };
 
-struct CDPort : SVGPort {
+struct CDPort : app::SvgPort {
 private:
   CDShadow shadow = CDShadow();
 
@@ -150,6 +155,6 @@ public:
 
   void draw(const DrawArgs &args) override {
     shadow.draw(args.vg);
-    SVGPort::draw(args);
+    app::SvgPort::draw(args);
   }
 };

@@ -11,6 +11,7 @@ struct CR78mk2Module : VDrumModule {
 
   CR78mk2Module() : VDrumModule() {
     setupSamples();
+    configParam(CR78mk2Module::TUNE_PARAM, 0.6, 1.4, 1.0);
   }
 
   void setupSamples( ) override {
@@ -41,32 +42,28 @@ struct CR78mk2Widget : ModuleWidget {
   CR78mk2Widget(CR78mk2Module *module);
 };
 
-CR78mk2Widget::CR78mk2Widget(CR78mk2Module *module) : ModuleWidget(module) {
+CR78mk2Widget::CR78mk2Widget(CR78mk2Module *module) {
+		setModule(module);
   box.size = Vec(3 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT);
 
-  {
-    SVGPanel *panel = new SVGPanel( );
-    panel->box.size = box.size;
-    panel->setBackground(SVG::load(assetPlugin(pluginInstance, "res/CR78mk2.svg")));
-    addChild(panel);
-  }
+  setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/CR78mk2.svg")));
 
   addChild(createWidget<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
   addChild(createWidget<ScrewBlack>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-  addInput(createPort<CDPort>(Vec(10, 62.6), PortWidget::INPUT, module,
+  addInput(createInput<CDPort>(Vec(10, 62.6), module,
                                    CR78mk2Module::VOCT_INPUT));
 
-  addInput(createPort<CDPort>(Vec(10, 122.5), PortWidget::INPUT, module,
+  addInput(createInput<CDPort>(Vec(10, 122.5), module,
                                    CR78mk2Module::GATE_INPUT));
 
   addParam(createParam<LightKnobFull>(
-      Vec(10, 177.5), module, CR78mk2Module::TUNE_PARAM, 0.6, 1.4, 1.0));
-  addInput(createPort<CDPort>(Vec(10, 242.5), PortWidget::INPUT, module,
+      Vec(10, 177.5), module, CR78mk2Module::TUNE_PARAM));
+  addInput(createInput<CDPort>(Vec(10, 242.5), module,
                                    CR78mk2Module::TUNE_CV_INPUT));
 
-  addOutput(createPort<CDPort>(Vec(10, 302.5), PortWidget::OUTPUT, module,
+  addOutput(createOutput<CDPort>(Vec(10, 302.5), module,
                                      CR78mk2Module::AUDIO_OUTPUT));
 
 }

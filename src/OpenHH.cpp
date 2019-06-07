@@ -8,8 +8,15 @@
 #include "components.hpp"
 
 struct OpenHHModule : DrumModule {
+  OpenHHModule();
   void setupSamples( ) override;
 };
+
+OpenHHModule::OpenHHModule() {
+  config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
+  configParam(OpenHHModule::DRUM1_PARAM, 1.0, 14.0, 7.0);
+  configParam(OpenHHModule::DRUM2_PARAM, 1.0, 14.0, 7.0);
+}
 
 void OpenHHModule::setupSamples( ) {
   samples[0] = { (float *)openhh1, openhh1_len };
@@ -34,34 +41,30 @@ struct OpenHHWidget : ModuleWidget {
   OpenHHWidget(OpenHHModule *module);
 };
 
-OpenHHWidget::OpenHHWidget(OpenHHModule *module) : ModuleWidget(module) {
+OpenHHWidget::OpenHHWidget(OpenHHModule *module) {
+		setModule(module);
   box.size = Vec(3 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT);
 
-  {
-    SVGPanel *panel = new SVGPanel( );
-    panel->box.size = box.size;
-    panel->setBackground(SVG::load(assetPlugin(pluginInstance, "res/OpenHH.svg")));
-    addChild(panel);
-  }
+  setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/OpenHH.svg")));
 
   addChild(createWidget<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
   addChild(createWidget<ScrewBlack>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-  addInput(createPort<CDPort>(Vec(10, 30), PortWidget::INPUT, module,
+  addInput(createInput<CDPort>(Vec(10, 30), module,
                                    OpenHHModule::CLOCK1_INPUT));
   addParam(createParam<LightKnobSnap>(
-      Vec(10, 72.5), module, OpenHHModule::DRUM1_PARAM, 1.0, 14.0, 7.0));
+      Vec(10, 72.5), module, OpenHHModule::DRUM1_PARAM));
 
-  addOutput(createPort<CDPort>(Vec(10, 120), PortWidget::OUTPUT, module,
+  addOutput(createOutput<CDPort>(Vec(10, 120), module,
                                      OpenHHModule::AUDIO1_OUTPUT));
 
-  addInput(createPort<CDPort>(Vec(10, 220), PortWidget::INPUT, module,
+  addInput(createInput<CDPort>(Vec(10, 220), module,
                                    OpenHHModule::CLOCK2_INPUT));
   addParam(createParam<LightKnobSnap>(
-      Vec(10, 262.5), module, OpenHHModule::DRUM2_PARAM, 1.0, 14.0, 7.0));
+      Vec(10, 262.5), module, OpenHHModule::DRUM2_PARAM));
 
-  addOutput(createPort<CDPort>(Vec(10, 310), PortWidget::OUTPUT, module,
+  addOutput(createOutput<CDPort>(Vec(10, 310), module,
                                      OpenHHModule::AUDIO2_OUTPUT));
 }
 

@@ -15,7 +15,7 @@ struct DrumModule : Module {
   enum LightIds { NUM_LIGHTS };
 
   DrumModule( );
-  void step( ) override;
+  void process(const ProcessArgs &) override;
   virtual void setupSamples( );
   struct DrumContainer *getSample(float);
 

@@ -48,7 +48,8 @@ struct CR78Module : Module {
   enum OutputIds { AUDIO1_OUTPUT, AUDIO2_OUTPUT, NUM_OUTPUTS };
   enum LightIds { NUM_LIGHTS };
 
-  CR78Module( ) : Module(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS) {
+  CR78Module( ) {
+    config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
     currentStep1 = 0;
     last1 = -1;
     currentStep2 = 0;
@@ -64,7 +65,7 @@ struct CR78Module : Module {
 };
 
 void CR78Module::step( ) {
-  float in1 = inputs[ NOTE1_INPUT ].value;
+  float in1 = inputs[ NOTE1_INPUT ].getVoltage();
   struct CR78Container *note1;
 
   // check the first note
@@ -72,7 +73,7 @@ void CR78Module::step( ) {
 
   if (note1 == NULL) {
     currentStep1 = 0;
-    outputs[ AUDIO1_OUTPUT ].value = 0;
+    outputs[ AUDIO1_OUTPUT ].setVoltage(0);
     last1 = -1;
   } else {
     if (last1 != note1->current) {
@@ -81,14 +82,14 @@ void CR78Module::step( ) {
     }
 
     if (currentStep1 >= note1->length) {
-      outputs[ AUDIO1_OUTPUT ].value = 0;
+      outputs[ AUDIO1_OUTPUT ].setVoltage(0);
     } else {
-      outputs[ AUDIO1_OUTPUT ].value = note1->sample[currentStep1];
+      outputs[ AUDIO1_OUTPUT ].setVoltage(note1->sample[currentStep1]);
       currentStep1++;
     }
   }
 
-  float in2 = inputs[ NOTE2_INPUT ].value;
+  float in2 = inputs[ NOTE2_INPUT ].getVoltage();
   struct CR78Container *note2;
 
   // check the first note
@@ -96,7 +97,7 @@ void CR78Module::step( ) {
 
   if (note2 == NULL) {
     currentStep2 = 0;
-    outputs[ AUDIO2_OUTPUT ].value = 0;
+    outputs[ AUDIO2_OUTPUT ].setVoltage(0);
     last2 = -1;
   } else {
     if (last2 != note2->current) {
@@ -105,9 +106,9 @@ void CR78Module::step( ) {
     }
 
     if (currentStep2 >= note2->length) {
-      outputs[ AUDIO2_OUTPUT ].value = 0;
+      outputs[ AUDIO2_OUTPUT ].setVoltage(0);
     } else {
-      outputs[ AUDIO2_OUTPUT ].value = note2->sample[currentStep2];
+      outputs[ AUDIO2_OUTPUT ].setVoltage(note2->sample[currentStep2]);
       currentStep2++;
     }
   }
@@ -118,27 +119,23 @@ struct CR78Widget : ModuleWidget {
   CR78Widget(CR78Module *module);
 };
 
-CR78Widget::CR78Widget(CR78Module *module) : ModuleWidget(module) {
+CR78Widget::CR78Widget(CR78Module *module) {
+		setModule(module);
   box.size = Vec(3 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT);
 
-  {
-    SVGPanel *panel = new SVGPanel( );
-    panel->box.size = box.size;
-    panel->setBackground(SVG::load(assetPlugin(pluginInstance, "res/CR78.svg")));
-    addChild(panel);
-  }
+  setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/CR78.svg")));
 
   addChild(createWidget<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
   addChild(createWidget<ScrewBlack>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-  addInput(createPort<CDPort>(Vec(10, 30), PortWidget::INPUT, module,
+  addInput(createInput<CDPort>(Vec(10, 30), module,
                                    CR78Module::NOTE1_INPUT));
-  addOutput(createPort<CDPort>(Vec(10, 120), PortWidget::OUTPUT, module,
+  addOutput(createOutput<CDPort>(Vec(10, 120), module,
                                      CR78Module::AUDIO1_OUTPUT));
-  addInput(createPort<CDPort>(Vec(10, 220), PortWidget::INPUT, module,
+  addInput(createInput<CDPort>(Vec(10, 220), module,
                                    CR78Module::NOTE2_INPUT));
-  addOutput(createPort<CDPort>(Vec(10, 310), PortWidget::OUTPUT, module,
+  addOutput(createOutput<CDPort>(Vec(10, 310), module,
                                      CR78Module::AUDIO2_OUTPUT));
 
 }

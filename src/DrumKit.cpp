@@ -1,7 +1,7 @@
 #include "DrumKit.hpp"
 
 // The plugin-wide instance of the Plugin class
-Plugin *plugin;
+Plugin *pluginInstance;
 
 void init(rack::Plugin *p) {
   pluginInstance = p;
