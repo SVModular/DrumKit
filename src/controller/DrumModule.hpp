@@ -1,7 +1,8 @@
 #pragma once
 
 #include <cstdint>
-#include "DrumKit.hpp"
+#include "../../deps/SynthDevKit/src/CV.hpp"
+#include "../DrumKit.hpp"
 
 struct DrumContainer {
   float *sample;

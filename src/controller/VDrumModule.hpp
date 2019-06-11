@@ -3,9 +3,9 @@
 #include <cstdint>
 #include <cmath>
 
-#include "../deps/SynthDevKit/src/CV.hpp"
+#include "../../deps/SynthDevKit/src/CV.hpp"
 
-#include "DrumKit.hpp"
+#include "../DrumKit.hpp"
 
 struct VDrumContainer {
   float *sample;

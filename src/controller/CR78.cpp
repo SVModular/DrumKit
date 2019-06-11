@@ -1,9 +1,5 @@
-#include <stdint.h>
-
-#include "DrumKit.hpp"
-#include "cr78.h"
-
-#include "components.hpp"
+#include "CR78.hpp"
+#include "../samples/cr78.h"
 
 unsigned int cr781_len = 5672;
 unsigned int cr782_len = 3064;
@@ -13,11 +9,6 @@ unsigned int cr785_len = 2356;
 unsigned int cr786_len = 2577;
 unsigned int cr787_len = 18005;
 
-struct CR78Container {
-  float *sample;
-  unsigned int length;
-  int current;
-};
 
 struct CR78Container cr78samples[ 7 ] = {
   { (float *)cr781, cr781_len, 0 },
@@ -42,29 +33,15 @@ struct CR78Container *getCR78Note(float current) {
   return NULL;
 }
 
-struct CR78Module : Module {
-  enum ParamIds { NUM_PARAMS };
-  enum InputIds { NOTE1_INPUT, NOTE2_INPUT, NUM_INPUTS };
-  enum OutputIds { AUDIO1_OUTPUT, AUDIO2_OUTPUT, NUM_OUTPUTS };
-  enum LightIds { NUM_LIGHTS };
+CR78Module::CR78Module( ) {
+  config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
+  currentStep1 = 0;
+  last1 = -1;
+  currentStep2 = 0;
+  last2 = -1;
+}
 
-  CR78Module( ) {
-    config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
-    currentStep1 = 0;
-    last1 = -1;
-    currentStep2 = 0;
-    last2 = -1;
-  }
-
-  void step( ) override;
-
-  uint32_t currentStep1;
-  int last1;
-  uint32_t currentStep2;
-  int last2;
-};
-
-void CR78Module::step( ) {
+void CR78Module::process(const ProcessArgs &args) {
   float in1 = inputs[ NOTE1_INPUT ].getVoltage();
   struct CR78Container *note1;
 
@@ -114,30 +91,3 @@ void CR78Module::step( ) {
   }
 
 }
-
-struct CR78Widget : ModuleWidget {
-  CR78Widget(CR78Module *module);
-};
-
-CR78Widget::CR78Widget(CR78Module *module) {
-		setModule(module);
-  box.size = Vec(3 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT);
-
-  setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/CR78.svg")));
-
-  addChild(createWidget<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
-  addChild(createWidget<ScrewBlack>(
-      Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
-
-  addInput(createInput<CDPort>(Vec(10, 30), module,
-                                   CR78Module::NOTE1_INPUT));
-  addOutput(createOutput<CDPort>(Vec(10, 120), module,
-                                     CR78Module::AUDIO1_OUTPUT));
-  addInput(createInput<CDPort>(Vec(10, 220), module,
-                                   CR78Module::NOTE2_INPUT));
-  addOutput(createOutput<CDPort>(Vec(10, 310), module,
-                                     CR78Module::AUDIO2_OUTPUT));
-
-}
-
-Model *modelCR78 = createModel<CR78Module, CR78Widget>("CR78");

@@ -1,19 +1,16 @@
-#include <stdint.h>
-
-#include "../deps/SynthDevKit/src/CV.hpp"
-#include "DrumKit.hpp"
+#include "../../deps/SynthDevKit/src/CV.hpp"
 #include "DrumModule.hpp"
 
 
-  DrumModule::DrumModule( ) {
-    cv1          = new SynthDevKit::CV(1.7f);
-    cv2          = new SynthDevKit::CV(1.7f);
-    currentStep1 = 0;
-    currentStep2 = 0;
-    ready1       = false;
-    ready2       = false;
-    numSamples = 0;
-  }
+DrumModule::DrumModule( ) {
+  cv1          = new SynthDevKit::CV(1.7f);
+  cv2          = new SynthDevKit::CV(1.7f);
+  currentStep1 = 0;
+  currentStep2 = 0;
+  ready1       = false;
+  ready2       = false;
+  numSamples = 0;
+}
 
 
 struct DrumContainer *DrumModule::getSample(float current) {

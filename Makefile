@@ -7,8 +7,17 @@ CXXFLAGS +=
 # Static libraries are fine.
 LDFLAGS +=
 
+# Controllers
+CONTROLLERS += $(wildcard src/controller/*.cpp)
+
+# SynthDevKit
+SYNTHDEVKIT += $(wildcard deps/SynthDevKit/src/*.cpp)
+
+# Views
+VIEWS += $(wildcard src/view/*.cpp)
+
 # Add .cpp and .c files to the build
-SOURCES += $(wildcard src/*.cpp) $(wildcard deps/SynthDevKit/src/*.cpp) $(wildcard deps/*.cpp)
+SOURCES += $(wildcard src/*.cpp) $(SYNTHDEVKIT) $(CONTROLLERS) $(VIEWS) $(wildcard deps/*.cpp)
 
 # Add files to the ZIP package when running `make dist`
 # The compiled plugin is automatically added.
