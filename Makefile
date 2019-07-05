@@ -16,8 +16,11 @@ SYNTHDEVKIT += $(wildcard deps/SynthDevKit/src/*.cpp)
 # Views
 VIEWS += $(wildcard src/view/*.cpp)
 
+# Models
+MODELS += $(wildcard src/model/*.cpp)
+
 # Add .cpp and .c files to the build
-SOURCES += $(wildcard src/*.cpp) $(SYNTHDEVKIT) $(CONTROLLERS) $(VIEWS) $(wildcard deps/*.cpp)
+SOURCES += $(wildcard src/*.cpp) $(SYNTHDEVKIT) $(CONTROLLERS) $(VIEWS) $(MODELS) $(wildcard deps/*.cpp)
 
 # Add files to the ZIP package when running `make dist`
 # The compiled plugin is automatically added.

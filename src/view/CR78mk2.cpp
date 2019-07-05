@@ -1,5 +1,6 @@
 #include "../controller/CR78mk2.hpp"
-#include "components.hpp"
+#include "../component/port.hpp"
+#include "../component/knob.hpp"
 
 struct CR78mk2Widget : ModuleWidget {
   CR78mk2Widget(CR78mk2Module *module);
@@ -15,18 +16,18 @@ CR78mk2Widget::CR78mk2Widget(CR78mk2Module *module) {
   addChild(createWidget<ScrewBlack>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-  addInput(createInput<CDPort>(Vec(10, 62.6), module,
+  addInput(createInput<DKPort>(Vec(10, 62.6), module,
                                    CR78mk2Module::VOCT_INPUT));
 
-  addInput(createInput<CDPort>(Vec(10, 122.5), module,
+  addInput(createInput<DKPort>(Vec(10, 122.5), module,
                                    CR78mk2Module::GATE_INPUT));
 
   addParam(createParam<LightKnobFull>(
       Vec(10, 177.5), module, CR78mk2Module::TUNE_PARAM));
-  addInput(createInput<CDPort>(Vec(10, 242.5), module,
+  addInput(createInput<DKPort>(Vec(10, 242.5), module,
                                    CR78mk2Module::TUNE_CV_INPUT));
 
-  addOutput(createOutput<CDPort>(Vec(10, 302.5), module,
+  addOutput(createOutput<DKPort>(Vec(10, 302.5), module,
                                      CR78mk2Module::AUDIO_OUTPUT));
 
 }

@@ -38,7 +38,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-struct CDShadow {
+struct DKShadow {
 private:
   Rect box;
   float size = 0.65;
@@ -52,15 +52,15 @@ public:
   }
 
   void setBox(const Rect &box) {
-    CDShadow::box = box;
+    DKShadow::box = box;
   }
 
   void setSize(float size) {
-    CDShadow::size = size;
+    DKShadow::size = size;
   }
 
   void setStrength(float strength) {
-    CDShadow::strength = strength;
+    DKShadow::strength = strength;
   }
 
   void drawShadow(NVGcontext *vg, float strength, float size) {
@@ -82,79 +82,4 @@ public:
   void draw(NVGcontext *vg) {
     drawShadow(vg, strength, size);
   };
-};
-
-struct CDKnob : app::SvgKnob {
-protected:
-  CDShadow shadow = CDShadow();
-
-public:
-  CDKnob() {
-		minAngle = -0.83*M_PI;
-		maxAngle = 0.83*M_PI;
-	}
-
-  void setSVG(std::shared_ptr<SVG> svg) {
-    app::SvgKnob::setSVG(svg);
-
-    shadow.setBox(box);
-  }
-
-  void draw(const DrawArgs &args) override {
-    /** shadow */
-    shadow.draw(args.vg);
-
-    /** component */
-    app::SvgKnob::draw(args);
-  }
-};
-
-struct LightKnob : CDKnob {
-  LightKnob() {
-    minAngle = -0.65*M_PI;
-    maxAngle = 0.65*M_PI;
-
-    setSVG(APP->window->loadSvg(asset::plugin(pluginInstance, "res/Knob.svg")));
-  }
-};
-
-struct LightKnobFull : CDKnob {
-  LightKnobFull() {
-    minAngle = -0.84*M_PI;
-    maxAngle = 0.84*M_PI;
-
-    setSVG(APP->window->loadSvg(asset::plugin(pluginInstance, "res/Knob.svg")));
-  }
-};
-
-struct LightKnobSnap : LightKnob {
-  LightKnobSnap() {
-    snap = true;
-  }
-};
-
-struct LightKnobSmall : CDKnob {
-  LightKnobSmall() {
-    setSVG(APP->window->loadSvg(asset::plugin(pluginInstance, "res/KnobSMall.svg")));
-  }
-};
-
-struct CDPort : app::SvgPort {
-private:
-  CDShadow shadow = CDShadow();
-
-public:
-  CDPort() {
-    setSvg(APP->window->loadSvg(asset::plugin(pluginInstance, "res/Port.svg")));
-
-    /** inherit dimensions */
-    shadow.setBox(box);
-    shadow.setSize(0.4);
-    shadow.setShadowPosition(2, 1);
-  }
-
-  void draw(const DrawArgs &args) override {
-    shadow.draw(args.vg);
-    app::SvgPort::draw(args);
-  }
 };

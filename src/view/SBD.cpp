@@ -1,5 +1,6 @@
 #include "../controller/SBD.hpp"
-#include "components.hpp"
+#include "../component/port.hpp"
+#include "../component/knob.hpp"
 
 struct SBDWidget : ModuleWidget {
   SBDWidget(SBDModule *module);
@@ -18,17 +19,17 @@ SBDWidget::SBDWidget(SBDModule *module) {
 
   addParam(createParam<LightKnobFull>(
       Vec(10, 57.5), module, SBDModule::PITCH_PARAM));
-  addInput(createInput<CDPort>(Vec(10, 122.5), module,
+  addInput(createInput<DKPort>(Vec(10, 122.5), module,
                                    SBDModule::PITCH_CV_INPUT));
 
   addParam(createParam<LightKnobFull>(
       Vec(55, 57.5), module, SBDModule::PITCH_DECAY_PARAM));
-  addInput(createInput<CDPort>(Vec(55, 122.5), module,
+  addInput(createInput<DKPort>(Vec(55, 122.5), module,
                                    SBDModule::PITCH_DECAY_CV_INPUT));
 
   addParam(createParam<LightKnobFull>(
       Vec(100, 57.5), module, SBDModule::AMP_DECAY_PARAM));
-  addInput(createInput<CDPort>(Vec(100, 122.5), module,
+  addInput(createInput<DKPort>(Vec(100, 122.5), module,
                                    SBDModule::AMP_DECAY_CV_INPUT));
 
   addParam(createParam<LightKnobFull>(
@@ -46,9 +47,9 @@ SBDWidget::SBDWidget(SBDModule *module) {
   addParam(createParam<CKSS>(
       Vec(89.5, 236.5), module, SBDModule::WAVE_PARAM));
 
-  addInput(createInput<CDPort>(Vec(22, 302.5), module,
+  addInput(createInput<DKPort>(Vec(22, 302.5), module,
                                    SBDModule::GATE_INPUT));
-  addOutput(createOutput<CDPort>(Vec(88, 302.5), module,
+  addOutput(createOutput<DKPort>(Vec(88, 302.5), module,
                                    SBDModule::AUDIO_OUTPUT));
 
 }

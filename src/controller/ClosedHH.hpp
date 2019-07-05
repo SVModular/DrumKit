@@ -1,6 +1,7 @@
-#include "DrumModule.hpp"
+#include "SampleController.hpp"
 
-struct ClosedHHModule : DrumModule {
+struct ClosedHHModule : SampleController {
   ClosedHHModule();
   void setupSamples( ) override;
+  uint8_t sampleId(uint8_t) override;
 };

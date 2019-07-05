@@ -39,7 +39,8 @@ void VDrumModule::process(const ProcessArgs &args) {
     float current           = inputs[ VOCT_INPUT ].getVoltage();
 
     float tune = clamp(params[TUNE_PARAM].getValue() + (inputs[TUNE_CV_INPUT].isConnected() ? inputs[TUNE_CV_INPUT].getVoltage() : 0.0f), 0.2, 1.8);
-    outputs[ AUDIO_OUTPUT ].setVoltage(getSampleValue(current, tune));
+    double adjust = (44100 / args.sampleRate);
+    outputs[ AUDIO_OUTPUT ].setVoltage(getSampleValue(current, adjust));
     currentStep += tune;
   } else {
     outputs[AUDIO_OUTPUT].setVoltage(0.0f);
@@ -47,6 +48,7 @@ void VDrumModule::process(const ProcessArgs &args) {
 }
 
 float VDrumModule::getSampleValue (double current, float tune) {
+  fprintf(stderr, "tune: %f\n", tune);
   double rem, dden;
 
   rem = modf (currentStep , &dden);

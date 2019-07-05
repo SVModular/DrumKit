@@ -1,5 +1,6 @@
 #include "../controller/DMX.hpp"
-#include "components.hpp"
+#include "../component/port.hpp"
+#include "../component/knob.hpp"
 
 struct DMXWidget : ModuleWidget {
   DMXWidget(DMXModule *module);
@@ -15,13 +16,13 @@ DMXWidget::DMXWidget(DMXModule *module) {
   addChild(createWidget<ScrewBlack>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-  addInput(createInput<CDPort>(Vec(10, 30), module,
+  addInput(createInput<DKPort>(Vec(10, 30), module,
                                    DMXModule::NOTE1_INPUT));
-  addOutput(createOutput<CDPort>(Vec(10, 120), module,
+  addOutput(createOutput<DKPort>(Vec(10, 120), module,
                                      DMXModule::AUDIO1_OUTPUT));
-  addInput(createInput<CDPort>(Vec(10, 220), module,
+  addInput(createInput<DKPort>(Vec(10, 220), module,
                                    DMXModule::NOTE2_INPUT));
-  addOutput(createOutput<CDPort>(Vec(10, 310), module,
+  addOutput(createOutput<DKPort>(Vec(10, 310), module,
                                      DMXModule::AUDIO2_OUTPUT));
 
 }

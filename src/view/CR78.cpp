@@ -1,5 +1,6 @@
 #include "../controller/CR78.hpp"
-#include "components.hpp"
+#include "../component/port.hpp"
+#include "../component/knob.hpp"
 
 struct CR78Widget : ModuleWidget {
   CR78Widget(CR78Module *module);
@@ -15,13 +16,13 @@ CR78Widget::CR78Widget(CR78Module *module) {
   addChild(createWidget<ScrewBlack>(
       Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-  addInput(createInput<CDPort>(Vec(10, 30), module,
+  addInput(createInput<DKPort>(Vec(10, 30), module,
                                    CR78Module::NOTE1_INPUT));
-  addOutput(createOutput<CDPort>(Vec(10, 120), module,
+  addOutput(createOutput<DKPort>(Vec(10, 120), module,
                                      CR78Module::AUDIO1_OUTPUT));
-  addInput(createInput<CDPort>(Vec(10, 220), module,
+  addInput(createInput<DKPort>(Vec(10, 220), module,
                                    CR78Module::NOTE2_INPUT));
-  addOutput(createOutput<CDPort>(Vec(10, 310), module,
+  addOutput(createOutput<DKPort>(Vec(10, 310), module,
                                      CR78Module::AUDIO2_OUTPUT));
 
 }
