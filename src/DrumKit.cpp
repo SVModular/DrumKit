@@ -71,7 +71,7 @@ void setupSamples ( ) {
   }
 
   // closed hh
-  for (uint8_t i = 1; i < 17; i++) {
+  for (uint8_t i = 1; i < 16; i++) {
     char buf[64];
     sprintf(buf, "%02d", i);
     arr = loadSample(std::string("res/samples/closedhh/") + buf + ".raw", &size);
@@ -80,11 +80,29 @@ void setupSamples ( ) {
   }
 
   // open hh
-  for (uint8_t i = 1; i < 17; i++) {
+  for (uint8_t i = 1; i < 15; i++) {
     char buf[64];
     sprintf(buf, "%02d", i);
     arr = loadSample(std::string("res/samples/openhh/") + buf + ".raw", &size);
     DrumKit::Sample *hh = new DrumKit::Sample((uint64_t) size, std::string("openhh-") + buf, arr, 0);
+    sampleManager->addSample(hh);
+  }
+
+  // cr78
+  for (uint8_t i = 1; i < 8; i++) {
+    char buf[64];
+    sprintf(buf, "%02d", i);
+    arr = loadSample(std::string("res/samples/cr78/") + buf + ".raw", &size);
+    DrumKit::Sample *hh = new DrumKit::Sample((uint64_t) size, std::string("cr78-") + buf, arr, 0);
+    sampleManager->addSample(hh);
+  }
+
+  // dmx
+  for (uint8_t i = 1; i < 13; i++) {
+    char buf[64];
+    sprintf(buf, "%02d", i);
+    arr = loadSample(std::string("res/samples/dmx/") + buf + ".raw", &size);
+    DrumKit::Sample *hh = new DrumKit::Sample((uint64_t) size, std::string("dmx-") + buf, arr, 0);
     sampleManager->addSample(hh);
   }
 
@@ -107,8 +125,6 @@ void init(rack::Plugin *p) {
 	p->addModel(modelDMX);
   p->addModel(modelCR78);
   p->addModel(modelSBD);
-  p->addModel(modelDMXmk2);
-  p->addModel(modelCR78mk2);
   p->addModel(modelGnome);
   p->addModel(modelSequencer);
   //p->addModel(modelMarionette);

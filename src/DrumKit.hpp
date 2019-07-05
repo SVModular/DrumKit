@@ -15,8 +15,6 @@ extern Model *modelOpenHH;
 extern Model *modelDMX;
 extern Model *modelCR78;
 extern Model *modelSBD;
-extern Model *modelDMXmk2;
-extern Model *modelCR78mk2;
 extern Model *modelGnome;
 extern Model *modelSequencer;
 extern Model *modelMarionette;

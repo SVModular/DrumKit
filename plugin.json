@@ -36,25 +36,9 @@
       ]
     },
     {
-      "slug": "CR78mk2",
-      "name": "CR78 mk2",
-      "description": "CompuRhythm 78 Kit, mk 2",
-      "tags": [
-        "Drum"
-      ]
-    },
-    {
       "slug": "DMX",
       "name": "DMX",
       "description": "DMX Drum Kit",
-      "tags": [
-        "Drum"
-      ]
-    },
-    {
-      "slug": "DMXmk2",
-      "name": "DMX mk2",
-      "description": "DMX Drum Kit mk 2",
       "tags": [
         "Drum"
       ]
