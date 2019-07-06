@@ -4,8 +4,8 @@
 
 DMXModule::DMXModule( ) {
   config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
-  configParam(DRUM_PARAM, 0.0, 7.0, 3.0);
-  configParam(DRUM_PARAM + 1, 0.0, 7.0, 3.0);
+  configParam(DRUM_PARAM, 0.0, 11.0, 5.0);
+  configParam(DRUM_PARAM + 1, 0.0, 11.0, 5.0);
 
   configParam(TUNE_PARAM, 0.2, 1.8, 1);
   configParam(TUNE_PARAM + 1, 0.2, 1.8, 1);
