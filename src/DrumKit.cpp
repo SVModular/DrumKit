@@ -106,6 +106,15 @@ void setupSamples ( ) {
     sampleManager->addSample(hh);
   }
 
+  // tomi
+  for (uint8_t i = 1; i < 15; i++) {
+    char buf[64];
+    sprintf(buf, "%02d", i);
+    arr = loadSample(std::string("res/samples/tomi/") + buf + ".raw", &size);
+    DrumKit::Sample *hh = new DrumKit::Sample((uint64_t) size, std::string("tomi-") + buf, arr, 0);
+    sampleManager->addSample(hh);
+  }
+
 }
 
 
