@@ -8,7 +8,7 @@ struct OpenHHWidget : ModuleWidget {
 
 OpenHHWidget::OpenHHWidget(OpenHHModule *module) {
 	setModule(module);
-  box.size = Vec(6 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT);
+  box.size = Vec(9 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT);
 
   setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/OpenHH.svg")));
 
@@ -52,6 +52,20 @@ OpenHHWidget::OpenHHWidget(OpenHHModule *module) {
 
   addOutput(
       createOutput<DKPort>(Vec(55, 310), module, OpenHHModule::AUDIO_OUTPUT + 1));
+
+  addInput(
+      createInput<DKPort>(Vec(100, 30), module, OpenHHModule::CHOKE_CV));
+  addInput(
+      createInput<DKPort>(Vec(100, 220), module, OpenHHModule::CHOKE_CV + 1));
+
+
+  addParam(createParam<LightKnob>(Vec(100, 72.5), module, OpenHHModule::CHOKE_PARAM));
+  addParam(createParam<LightKnob>(Vec(100, 262.5), module, OpenHHModule::CHOKE_PARAM + 1));
+
+  addInput(
+      createInput<DKPort>(Vec(100, 120), module, OpenHHModule::CHOKE_GATE));
+  addInput(
+      createInput<DKPort>(Vec(100, 310), module, OpenHHModule::CHOKE_GATE + 1));
 }
 
 Model *modelOpenHH = createModel<OpenHHModule, OpenHHWidget>("OpenHiHat");
