@@ -1,9 +1,16 @@
 #include "Sequencer.hpp"
 
 static uint8_t patternForVoltage(float voltage) {
-  float divisions = 5 / NUM_PATTERNS - 1;
+  float divisions = (float) 10 / (float) (NUM_PATTERNS + 1);
 
-  return (uint8_t) ((voltage < 0) ? 0 : (voltage / divisions)) > (NUM_PATTERNS - 1) ? (NUM_PATTERNS - 1) : ((voltage < 0) ? 0 : (voltage / divisions));
+  int8_t pattern = (int8_t) (voltage / divisions);
+  if (pattern < 0) {
+    pattern = 0;
+  } else if (pattern > NUM_PATTERNS) {
+    pattern = NUM_PATTERNS;
+  }
+
+  return (uint8_t) pattern;
 }
 
 SequencerModule::SequencerModule() {
@@ -188,6 +195,10 @@ void SequencerModule::checkPatternCV(uint8_t which) {
   if (inputs[TRACK_SELECT + which].isConnected()) {
     programs[which] = patternForVoltage(inputs[TRACK_SELECT + which].getVoltage());
   }
+
+  if (which == 0 && programs[which] == 0) {
+    programs[0] = 1;
+  }
 }
 
 void SequencerModule::alterPattern(uint8_t which, int8_t amount, uint8_t to = 0) {
@@ -299,11 +310,22 @@ void SequencerModule::process(const ProcessArgs &args) {
     for (int i = 0; i < SEQ_BEATS / 4; i++) {
       lights[QTR_LED + i].value = (i == qtr) ? 1.0f : 0;
     }
+  }
 
-    for (int i = 0; i < SEQ_PLAY; i++) {
-      checkPatternCV(i);
-      lights[PLAY_LED + i].value = (i == currentPosition) ? 1.0f : 0;
+  // pattern cv selection
+  for (int i = 0; i < SEQ_PLAY; i++) {
+    checkPatternCV(i);
+    lights[PLAY_LED + i].value = (i == currentPosition) ? 1.0f : 0;
+  }
+
+  // main pattern cv selection
+  if (inputs[MAIN_SELECT].isConnected()) {
+    savePattern(currentPlay);
+    uint8_t pattern = patternForVoltage(inputs[MAIN_SELECT].getVoltage());
+    if (pattern == 0) {
+      pattern = 1;
     }
+    setPlay(pattern);
   }
 
   // check to see if this is an active beat

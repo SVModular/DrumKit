@@ -31,6 +31,7 @@ SequencerWidget::SequencerWidget(SequencerModule *module) {
         Vec(190, 94), module, SequencerModule::MAIN_UP));
   addParam(createParam<DKMomentaryDownButton>(
         Vec(216, 94), module, SequencerModule::MAIN_DOWN));
+  addInput(createInput<DKPort>(Vec(201, 24.5), module, SequencerModule::MAIN_SELECT));
 
   for (int i = 0; i < SEQ_TRACKS; i++) {
     // sequence pads
@@ -58,12 +59,13 @@ SequencerWidget::SequencerWidget(SequencerModule *module) {
 
   }
 
+/*
   // pulse width
   addParam(createParam<LightKnobFull>(
       Vec(118.5, 72.5), module, SequencerModule::PULSE_WIDTH));
   addInput(createInput<DKPort>(Vec(94, 78), module,
                                    SequencerModule::PULSE_WIDTH_CV));
-
+*/
 
   // clock in
   addInput(createInput<DKPort>(Vec(10, 30), module,
@@ -74,19 +76,19 @@ SequencerWidget::SequencerWidget(SequencerModule *module) {
                                  SequencerModule::RESET));
 
   // run
-  addParam(createParam<DKLEDBezel>(Vec(73, 33), module,
+  addParam(createParam<DKLEDBezel>(Vec(69, 33), module,
                                          SequencerModule::PLAY));
   addChild(createLight<DKButtonLight<GreenLight>>(
-      Vec(75, 35), module, SequencerModule::RUN_LIGHT));
-  addInput(createInput<DKPort>(Vec(49, 30), module,
+      Vec(71, 35), module, SequencerModule::RUN_LIGHT));
+  addInput(createInput<DKPort>(Vec(45, 30), module,
                                    SequencerModule::RUN_CV));
 
   // cycle
-  addParam(createParam<DKLEDBezel>(Vec(73, 78), module,
+  addParam(createParam<DKLEDBezel>(Vec(69, 78), module,
                                          SequencerModule::CYCLE));
   addChild(createLight<DKButtonLight<GreenLight>>(
-      Vec(75, 80), module, SequencerModule::CYCLE_LIGHT));
-  addInput(createInput<DKPort>(Vec(49, 75), module,
+      Vec(71, 80), module, SequencerModule::CYCLE_LIGHT));
+  addInput(createInput<DKPort>(Vec(45, 75), module,
                                    SequencerModule::CYCLE_CV));
 
   for (int i = 0; i < SEQ_PLAY; i++) {
