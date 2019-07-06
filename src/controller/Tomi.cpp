@@ -4,8 +4,8 @@
 
 TomiModule::TomiModule( ) {
   config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
-  configParam(DRUM_PARAM, 0.0, 14.0, 7.0);
-  configParam(DRUM_PARAM + 1, 0.0, 14.0, 7.0);
+  configParam(DRUM_PARAM, 0.0, 13.0, 7.0);
+  configParam(DRUM_PARAM + 1, 0.0, 13.0, 7.0);
 
   configParam(TUNE_PARAM, 0.2, 1.8, 1);
   configParam(TUNE_PARAM + 1, 0.2, 1.8, 1);
@@ -25,7 +25,7 @@ uint8_t TomiModule::sampleId(uint8_t which) {
 }
 
 void TomiModule::setupSamples() {
-  numSamples = 15;
+  numSamples = 14;
   char name[32];
 
   for (uint8_t i = 0; i < numSamples; i++) {
