@@ -68,6 +68,14 @@
       ]
     },
     {
+      "slug": "Tomi",
+      "name": "Tomi",
+      "description": "Tom Drum Kit Module",
+      "tags": [
+        "Drum"
+      ]
+    },
+    {
       "slug": "Gnome",
       "name": "Gnome",
       "description": "Gnome Clock Module",
