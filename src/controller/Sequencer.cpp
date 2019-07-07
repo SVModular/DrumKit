@@ -329,7 +329,7 @@ void SequencerModule::process(const ProcessArgs &args) {
   }
 
   // check to see if this is an active beat
-  if (currentCount != -1 && params[PLAY + currentPosition].getValue()) {
+  if (currentCount != -1) {
     uint16_t pw = pulseWidth();
 
     for (int i = 0; i < SEQ_TRACKS; i++) {
@@ -347,7 +347,7 @@ void SequencerModule::process(const ProcessArgs &args) {
     }
   }
 
-  if (currentCount == SEQ_BEATS) {
+  if (currentCount == SEQ_BEATS - 1) {
     currentCount = -1;
 
     updateCurrentPosition();
