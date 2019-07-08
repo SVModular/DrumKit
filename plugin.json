@@ -90,6 +90,14 @@
       "tags": [
         "Sequencer"
       ]
+    },
+    {
+      "slug": "Baronial",
+      "name": "Baronial",
+      "description": "Drum Focused Envelope Generator",
+      "tags": [
+        "Envelope generator"
+      ]
     }
   ]
 }

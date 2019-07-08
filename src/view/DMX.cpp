@@ -12,10 +12,6 @@ DMXWidget::DMXWidget(DMXModule *module) {
 
   setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/DMX.svg")));
 
-  addChild(createWidget<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
-  addChild(createWidget<ScrewBlack>(
-      Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
-
   addInput(
       createInput<DKPort>(Vec(10, 30), module, DMXModule::DRUM_CV));
 

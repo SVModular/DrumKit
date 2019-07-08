@@ -38,8 +38,8 @@ struct LightKnob : DKKnob {
 
 struct LightKnobFull : DKKnob {
   LightKnobFull() {
-    minAngle = -0.84*M_PI;
-    maxAngle = 0.84*M_PI;
+    minAngle = -0.8*M_PI;
+    maxAngle = 0.8*M_PI;
 
     setSVG(APP->window->loadSvg(asset::plugin(pluginInstance, "res/component/Knob.svg")));
   }

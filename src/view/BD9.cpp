@@ -13,10 +13,6 @@ BD9Widget::BD9Widget(BD9Module *module) {
 
   setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/BD9.svg")));
 
-  addChild(createWidget<ScrewBlack>(Vec(RACK_GRID_WIDTH, 0)));
-  addChild(createWidget<ScrewBlack>(
-      Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
-
   addInput(
       createInput<DKPort>(Vec(10, 30), module, BD9Module::DRUM_CV));
 

@@ -19,5 +19,6 @@ extern Model *modelGnome;
 extern Model *modelSequencer;
 extern Model *modelMarionette;
 extern Model *modelTomi;
+extern Model *modelBaronial;
 
 extern DrumKit::SampleManager *sampleManager;

@@ -34,7 +34,7 @@
      inkscape:zoom="2.9512404"
      inkscape:cy="135.24546"
      gridtolerance="10"
-     inkscape:cx="-57.845509"
+     inkscape:cx="9.9226062"
      inkscape:window-height="1006"
      inkscape:measure-start="21.6858,252.097"
      inkscape:pagecheckerboard="true"
@@ -91,7 +91,7 @@
          offset="0"
          id="stop911" />
       <stop
-         style="stop-color:#d0d0d0;stop-opacity:1;"
+         style="stop-color:#a0a0a0;stop-opacity:1;"
          offset="1"
          id="stop913" />
     </linearGradient>
@@ -114,19 +114,19 @@
      visibility="visible" />
   <g
      aria-label="DMX"
-     style="font-size:12px;font-family:Raleway;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1px;text-rendering:geometricPrecision"
+     style="font-size:16px;font-family:Raleway;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1px;text-rendering:geometricPrecision"
      id="text5">
     <path
-       d="m 33.451172,17.224609 v 6.802735 h 1.429687 q 1.810547,0 2.648438,-0.820313 0.84375,-0.820312 0.84375,-2.589844 0,-1.757812 -0.84375,-2.572265 -0.837891,-0.820313 -2.648438,-0.820313 z m -1.183594,-0.972656 h 2.431641 q 2.542968,0 3.732422,1.060547 1.189453,1.054687 1.189453,3.304687 0,2.261719 -1.195313,3.322266 Q 37.230469,25 34.699219,25 h -2.431641 z"
-       style="font-size:12px;font-family:Raleway;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1px;text-rendering:geometricPrecision"
+       d="m 29.601562,6.6328125 v 9.0703125 h 1.90625 q 2.414063,0 3.53125,-1.09375 1.125,-1.09375 1.125,-3.453125 0,-2.34375 -1.125,-3.4296875 -1.117187,-1.09375 -3.53125,-1.09375 z m -1.578125,-1.296875 h 3.242188 q 3.390625,0 4.976562,1.4140625 1.585938,1.40625 1.585938,4.40625 0,3.015625 -1.59375,4.429688 Q 34.640625,17 31.265625,17 h -3.242188 z"
+       style="font-size:16px;font-family:Raleway;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1px;text-rendering:geometricPrecision"
        id="path154" />
     <path
-       d="m 41.501953,16.251953 h 1.763672 l 2.232422,5.953125 2.24414,-5.953125 h 1.763672 V 25 h -1.154297 v -7.681641 l -2.255859,6 H 44.90625 l -2.255859,-6 V 25 h -1.148438 z"
-       style="font-size:12px;font-family:Raleway;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1px;text-rendering:geometricPrecision"
+       d="M 40.335937,5.3359375 H 42.6875 l 2.976562,7.9375005 2.992188,-7.9375005 h 2.351562 V 17 H 49.46875 V 6.7578125 L 46.460937,14.757813 H 44.875 L 41.867187,6.7578125 V 17 h -1.53125 z"
+       style="font-size:16px;font-family:Raleway;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1px;text-rendering:geometricPrecision"
        id="path156" />
     <path
-       d="m 51.439453,16.251953 h 1.271484 l 2.173829,3.251953 2.185546,-3.251953 h 1.271485 l -2.8125,4.201172 3,4.546875 H 57.257812 L 54.796875,21.279297 52.318359,25 h -1.277343 l 3.123046,-4.669922 z"
-       style="font-size:12px;font-family:Raleway;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1px;text-rendering:geometricPrecision"
+       d="M 53.585937,5.3359375 H 55.28125 L 58.179687,9.671875 61.09375,5.3359375 h 1.695312 l -3.75,5.6015625 4,6.0625 H 61.34375 L 58.0625,12.039063 54.757812,17 h -1.703125 l 4.164063,-6.226562 z"
+       style="font-size:16px;font-family:Raleway;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1px;text-rendering:geometricPrecision"
        id="path158" />
   </g>
   <g
@@ -289,19 +289,19 @@
      id="line28" />
   <g
      aria-label="DMX"
-     style="font-size:12px;font-family:Raleway;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1px;text-rendering:geometricPrecision"
+     style="font-size:16px;font-family:Raleway;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1px;text-rendering:geometricPrecision"
      id="text30">
     <path
-       d="m 33.451172,207.22461 v 6.80273 h 1.429687 q 1.810547,0 2.648438,-0.82031 0.84375,-0.82031 0.84375,-2.58984 0,-1.75782 -0.84375,-2.57227 -0.837891,-0.82031 -2.648438,-0.82031 z m -1.183594,-0.97266 h 2.431641 q 2.542968,0 3.732422,1.06055 1.189453,1.05469 1.189453,3.30469 0,2.26172 -1.195313,3.32226 Q 37.230469,215 34.699219,215 h -2.431641 z"
-       style="font-size:12px;font-family:Raleway;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1px;text-rendering:geometricPrecision"
+       d="m 29.601562,196.63281 v 9.07031 h 1.90625 q 2.414063,0 3.53125,-1.09375 1.125,-1.09375 1.125,-3.45312 0,-2.34375 -1.125,-3.42969 -1.117187,-1.09375 -3.53125,-1.09375 z m -1.578125,-1.29687 h 3.242188 q 3.390625,0 4.976562,1.41406 1.585938,1.40625 1.585938,4.40625 0,3.01562 -1.59375,4.42969 Q 34.640625,207 31.265625,207 h -3.242188 z"
+       style="font-size:16px;font-family:Raleway;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1px;text-rendering:geometricPrecision"
        id="path230" />
     <path
-       d="m 41.501953,206.25195 h 1.763672 l 2.232422,5.95313 2.24414,-5.95313 h 1.763672 V 215 h -1.154297 v -7.68164 l -2.255859,6 H 44.90625 l -2.255859,-6 V 215 h -1.148438 z"
-       style="font-size:12px;font-family:Raleway;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1px;text-rendering:geometricPrecision"
+       d="M 40.335937,195.33594 H 42.6875 l 2.976562,7.9375 2.992188,-7.9375 h 2.351562 V 207 H 49.46875 v -10.24219 l -3.007813,8 H 44.875 l -3.007813,-8 V 207 h -1.53125 z"
+       style="font-size:16px;font-family:Raleway;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1px;text-rendering:geometricPrecision"
        id="path232" />
     <path
-       d="m 51.439453,206.25195 h 1.271484 l 2.173829,3.25196 2.185546,-3.25196 h 1.271485 l -2.8125,4.20117 3,4.54688 H 57.257812 L 54.796875,211.2793 52.318359,215 h -1.277343 l 3.123046,-4.66992 z"
-       style="font-size:12px;font-family:Raleway;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1px;text-rendering:geometricPrecision"
+       d="m 53.585937,195.33594 h 1.695313 l 2.898437,4.33593 2.914063,-4.33593 h 1.695312 l -3.75,5.60156 4,6.0625 H 61.34375 L 58.0625,202.03906 54.757812,207 h -1.703125 l 4.164063,-6.22656 z"
+       style="font-size:16px;font-family:Raleway;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1px;text-rendering:geometricPrecision"
        id="path234" />
   </g>
   <g

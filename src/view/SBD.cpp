@@ -12,10 +12,6 @@ SBDWidget::SBDWidget(SBDModule *module) {
 
   setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/SBD.svg")));
 
-  addChild(createWidget<ScrewBlack>(Vec(15, 0)));
-  addChild(createWidget<ScrewBlack>(Vec(box.size.x-30, 0)));
-  addChild(createWidget<ScrewBlack>(Vec(15, 365)));
-  addChild(createWidget<ScrewBlack>(Vec(box.size.x-30, 365)));
 
   addParam(createParam<LightKnobFull>(
       Vec(10, 57.5), module, SBDModule::PITCH_PARAM));

@@ -137,5 +137,6 @@ void init(rack::Plugin *p) {
   p->addModel(modelGnome);
   p->addModel(modelSequencer);
   p->addModel(modelTomi);
+  p->addModel(modelBaronial);
   //p->addModel(modelMarionette);
 }
