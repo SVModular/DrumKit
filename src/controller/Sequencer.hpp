@@ -68,7 +68,7 @@ struct SequencerModule : Module {
   int8_t currentCount;
   int8_t currentPlay;
   int16_t currentGate;
-  uint16_t currentPulse;
+  uint64_t currentPulse;
   int8_t currentPosition;
   bool running = true;
   bool cycling = true;
