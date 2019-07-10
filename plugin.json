@@ -98,6 +98,14 @@
       "tags": [
         "Envelope generator"
       ]
+    },
+    {
+      "slug": "Marionette",
+      "name": "Marionette",
+      "description": "Hybrid Bass Drum",
+      "tags": [
+        "Drum"
+      ]
     }
   ]
 }

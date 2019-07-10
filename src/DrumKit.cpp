@@ -52,6 +52,11 @@ void setupSamples ( ) {
   DrumKit::Sample *kick = new DrumKit::Sample((uint64_t) size, "kick01", arr, 55);
   sampleManager->addSample(kick);
 
+  arr = loadSample("res/samples/kick/02.raw", &size);
+  kick = new DrumKit::Sample((uint64_t) size, "kick02", arr, 60);
+  sampleManager->addSample(kick);
+
+
   // bd9
   for (uint8_t i = 1; i < 17; i++) {
     char buf[64];
@@ -138,5 +143,5 @@ void init(rack::Plugin *p) {
   p->addModel(modelSequencer);
   p->addModel(modelTomi);
   p->addModel(modelBaronial);
-  //p->addModel(modelMarionette);
+  p->addModel(modelMarionette);
 }
