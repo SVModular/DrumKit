@@ -17,7 +17,7 @@ SequencerModule::SequencerModule() {
   config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
 
   clock = new SynthDevKit::CV(0.5);
-  reset = new SynthDevKit::CV(0.5);
+  resetCV = new SynthDevKit::CV(0.5);
   runParam = new SynthDevKit::CV(0.5);
   runCV = new SynthDevKit::CV(0.5);
   cycleParam = new SynthDevKit::CV(0.5);

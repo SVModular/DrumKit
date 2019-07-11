@@ -58,7 +58,6 @@ struct SequencerModule : Module {
   void doReset( );
 
   SynthDevKit::CV *clock;
-  SynthDevKit::CV *reset;
   SynthDevKit::CV *runCV;
   SynthDevKit::CV *runParam;
   SynthDevKit::CV *cycleCV;
