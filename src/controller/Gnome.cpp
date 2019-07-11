@@ -173,5 +173,5 @@ void GnomeModule::process(const ProcessArgs &args) {
 }
 
 double GnomeModule::ticksPerBPM(uint32_t sampleRate) {
-  return (sampleRate * 60) / bpm;
+  return (sampleRate * 60) / (bpm / 4);
 }
