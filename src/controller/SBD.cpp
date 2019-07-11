@@ -2,7 +2,7 @@
 
 SBDModule::SBDModule( ) {
   config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
-  cv = new SynthDevKit::CV(1.7f);
+  cv = new SynthDevKit::CV(0.5f);
   noise = new SynthDevKit::PinkNoise(time(NULL));
   configParam(SBDModule::PITCH_PARAM, -5.0, 5.0, 0.0);
   configParam(SBDModule::PITCH_DECAY_PARAM, -0.2, 1.2, 0.5);
