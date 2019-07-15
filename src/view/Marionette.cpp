@@ -110,4 +110,4 @@ MarionetteWidget::MarionetteWidget(MarionetteModule *module) {
   addInput(createInput<DKPort>(Vec(141, 294.5), module, MarionetteModule::SUBOCT_WAVE_CV));
 }
 
-Model *modelMarionette = createModel<MarionetteModule, MarionetteWidget>("Marionette");
+Model *modelMarionette = createModel<MarionetteModule, MarionetteWidget>("MarionetteBass");
