@@ -9,7 +9,7 @@ Plugin *pluginInstance;
 DrumKit::SampleManager *sampleManager = nullptr;
 
 float *loadSample (std::string which, size_t *size) {
-  FILE *in = fopen(asset::plugin(pluginInstance, which).c_str(), "r");
+  FILE *in = fopen(asset::plugin(pluginInstance, which).c_str(), "rb");
 
   if (in == nullptr) {
     *size = 0;
