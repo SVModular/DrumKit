@@ -1,4 +1,5 @@
 #include "SBD.hpp"
+#include <ctime>
 
 SBDModule::SBDModule( ) {
   config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
