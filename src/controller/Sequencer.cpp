@@ -64,7 +64,7 @@ SequencerModule::SequencerModule() {
 
 void SequencerModule::doReset() {
   currentCount = -1;
-  currentPlay = programs[0];
+  setPlay(programs[0]);
   currentGate = -1;
   currentPosition = 0;
 }
