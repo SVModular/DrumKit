@@ -7,8 +7,9 @@
   "authorEmail": "rack@legitimatesounding.com",
   "authorUrl": "https://legitimatesounding.com/",
   "pluginUrl": "https://legitimatesounding.com/sv-modular/drumkit/",
-  "manualUrl": "https://legitimatesounding.com/sv-modular/drumkit/",
+  "manualUrl": "https://legitimatesounding.com/sv-modular/downloads/drumkit-manual.pdf",
   "sourceUrl": "https://github.com/JerrySievert/DrumKit",
+  "brand": "SV Modular",
   "modules": [
     {
       "slug": "BassDrum9",
