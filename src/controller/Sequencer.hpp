@@ -21,6 +21,8 @@ struct SequencerModule : Module {
     PATTERN_UP,
     PATTERN_DOWN = PATTERN_UP + SEQ_PLAY,
     CYCLE        = PATTERN_DOWN + SEQ_PLAY,
+    COPY,
+    PASTE,
     NUM_PARAMS
   };
   enum InputIds {
@@ -40,7 +42,9 @@ struct SequencerModule : Module {
     QTR_LED,
     BEAT_LED   = QTR_LED + (SEQ_BEATS / 4),
     PLAY_LED   = BEAT_LED + SEQ_BEATS,
-    NUM_LIGHTS = PLAY_LED + SEQ_PLAY
+    COPY_LIGHT = PLAY_LED + SEQ_PLAY,
+    PASTE_LIGHT,
+    NUM_LIGHTS
   };
 
   SequencerModule( );
@@ -56,6 +60,8 @@ struct SequencerModule : Module {
   void savePattern(uint8_t);
   void checkPatternCV(uint8_t);
   void doReset( );
+  void copyPattern();
+  void pastePattern();
 
   SynthDevKit::CV *clock;
   SynthDevKit::CV *runCV;
@@ -78,7 +84,12 @@ struct SequencerModule : Module {
   SynthDevKit::CV *patternDown[SEQ_PLAY];
   SynthDevKit::CV *mainUp;
   SynthDevKit::CV *mainDown;
+  SynthDevKit::CV *copy;
+  SynthDevKit::CV *paste;
 
   // play * beats * tracks
   bool tracks[NUM_PATTERNS + 1][ SEQ_BEATS ][ SEQ_TRACKS ];
+
+  // copied pattern
+  bool copied[SEQ_BEATS][SEQ_TRACKS];
 };

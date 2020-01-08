@@ -90,6 +90,18 @@ SequencerWidget::SequencerWidget(SequencerModule *module) {
       Vec(71, 80), module, SequencerModule::CYCLE_LIGHT));
   addInput(createInput<DKPort>(Vec(45, 75), module,
                                    SequencerModule::CYCLE_CV));
+  // copy
+  addParam(createParam<DKLEDBezel>(Vec(450.5, 33), module,
+                                         SequencerModule::COPY));
+  addChild(createLight<DKButtonLight<GreenLight>>(
+      Vec(452.5, 35), module, SequencerModule::COPY_LIGHT));
+
+  // paste
+  addParam(createParam<DKLEDBezel>(Vec(450.5, 78), module,
+                                         SequencerModule::PASTE));
+  addChild(createLight<DKButtonLight<GreenLight>>(
+      Vec(452.5, 80), module, SequencerModule::PASTE_LIGHT));
+
 
   for (int i = 0; i < SEQ_PLAY; i++) {
     addParam(createParam<DKMomentaryUpButton>(

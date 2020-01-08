@@ -24,6 +24,8 @@ SequencerModule::SequencerModule() {
   cycleCV = new SynthDevKit::CV(0.5);
   mainUp = new SynthDevKit::CV(0.5);
   mainDown = new SynthDevKit::CV(0.5);
+  copy = new SynthDevKit::CV(0.5);
+  paste = new SynthDevKit::CV(0.5);
 
   for (int i = 0; i < SEQ_PLAY; i++) {
     patternUp[i] = new SynthDevKit::CV(0.5);
@@ -60,6 +62,8 @@ SequencerModule::SequencerModule() {
   configParam(CYCLE, 0.0f, 1.0f, 0.0f);
   configParam(MAIN_UP, 0.0f, 1.0f, 0.0f);
   configParam(MAIN_DOWN, 0.0f, 1.0f, 0.0f);
+  configParam(COPY, 0.0f, 1.0f, 0.0f);
+  configParam(PASTE, 0.0f, 1.0f, 0.0f);
 }
 
 void SequencerModule::doReset() {
@@ -172,6 +176,24 @@ void SequencerModule::savePattern(uint8_t which) {
   }
 }
 
+void SequencerModule::pastePattern() {
+  for (int i = 0; i < SEQ_BEATS; i++) {
+    for (int j = 0; j < SEQ_TRACKS; j++) {
+      params[PAD_PARAM + (SEQ_TRACKS * i) + j].setValue(copied[i][j]);
+    }
+  }
+
+  savePattern(currentPlay);
+}
+
+void SequencerModule::copyPattern() {
+  for (int i = 0; i < SEQ_BEATS; i++) {
+    for (int j = 0; j < SEQ_TRACKS; j++) {
+      copied[i][j] = params[PAD_PARAM + (SEQ_TRACKS * i) + j].getValue();
+    }
+  }
+}
+
 void SequencerModule::updateCurrentPosition() {
   if (!cycling) {
     return;
@@ -253,6 +275,20 @@ void SequencerModule::process(const ProcessArgs &args) {
       setPlay(currentPlay + 1);
     }
   }
+
+  // copy
+  copy->update(params[COPY].getValue());
+  if (copy->newTrigger()) {
+    copyPattern();
+  }
+  lights[COPY_LIGHT].value = params[COPY].getValue() ? 1.0f : 0.0f;
+
+  // paste
+  paste->update(params[PASTE].getValue());
+  if (paste->newTrigger()) {
+    pastePattern();
+  }
+  lights[PASTE_LIGHT].value = params[PASTE].getValue() ? 1.0f : 0.0f;
 
   // reset
   if (inputs[RESET].isConnected()) {
