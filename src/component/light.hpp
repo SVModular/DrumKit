@@ -7,7 +7,7 @@ private:
   DKShadow shadow = DKShadow();
 
 public:
-  void setSVG(std::shared_ptr<SVG> svg) {
+  void setSvg(std::shared_ptr<Svg> svg) {
     shadow.setBox(box);
   }
 

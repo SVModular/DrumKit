@@ -12,8 +12,8 @@ public:
 		maxAngle = 0.83*M_PI;
 	}
 
-  void setSVG(std::shared_ptr<SVG> svg) {
-    app::SvgKnob::setSVG(svg);
+  void setSvg(std::shared_ptr<Svg> svg) {
+    app::SvgKnob::setSvg(svg);
 
     shadow.setBox(box);
   }
@@ -32,7 +32,7 @@ struct LightKnob : DKKnob {
     minAngle = -0.65*M_PI;
     maxAngle = 0.65*M_PI;
 
-    setSVG(APP->window->loadSvg(asset::plugin(pluginInstance, "res/component/Knob.svg")));
+    setSvg(APP->window->loadSvg(asset::plugin(pluginInstance, "res/component/Knob.svg")));
   }
 };
 
@@ -41,7 +41,7 @@ struct LightKnobFull : DKKnob {
     minAngle = -0.8*M_PI;
     maxAngle = 0.8*M_PI;
 
-    setSVG(APP->window->loadSvg(asset::plugin(pluginInstance, "res/component/Knob.svg")));
+    setSvg(APP->window->loadSvg(asset::plugin(pluginInstance, "res/component/Knob.svg")));
   }
 };
 
@@ -53,6 +53,6 @@ struct LightKnobSnap : LightKnob {
 
 struct LightKnobSmall : DKKnob {
   LightKnobSmall() {
-    setSVG(APP->window->loadSvg(asset::plugin(pluginInstance, "res/component/KnobSmall.svg")));
+    setSvg(APP->window->loadSvg(asset::plugin(pluginInstance, "res/component/KnobSmall.svg")));
   }
 };
