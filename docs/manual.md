@@ -1,7 +1,7 @@
 ---
 title: "DrumKit Manual"
 author: [Jerry Sievert]
-date: "2019-07-14"
+date: "2020-01-08"
 subject: "DrumKit"
 keywords: [DrumKit, VCVRack, Manual]
 lang: "en"
@@ -13,8 +13,7 @@ logo: "images/drumkit.png"
 DrumKit is a selection of drum focused modules for VCVRack.  It features a
 collection of carefully curated samples along with synthesized drum modules to
 bring you a fantastic drumming experience.  DrumKit is developed and maintained
-for you for free.  If you like DrumKit and are feeling generous, [donations](https://paypal.me/JerrySievert)
-are happily accepted (don't worry, donation money goes toward hand-crafted microbrew beer).
+for you for free.
 
 If you run into problems, feel free to open an [issue](https://github.com/JerrySievert/DrumKit/issues).
 
