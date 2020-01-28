@@ -4,11 +4,11 @@
 
 CR78Module::CR78Module( ) {
   config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
-  configParam(DRUM_PARAM, 0.0, 6.0, 3.0);
-  configParam(DRUM_PARAM + 1, 0.0, 6.0, 3.0);
+  configParam(DRUM_PARAM, 0.0, 6.0, 3.0, "Sample");
+  configParam(DRUM_PARAM + 1, 0.0, 6.0, 3.0, "Sample");
 
-  configParam(TUNE_PARAM, 0.2, 1.8, 1);
-  configParam(TUNE_PARAM + 1, 0.2, 1.8, 1);
+  configParam(TUNE_PARAM, 0.2, 1.8, 1, "Playback Speed", "x");
+  configParam(TUNE_PARAM + 1, 0.2, 1.8, 1, "Playback Speed", "x");
 
   numModules = 2;
 

@@ -1,6 +1,5 @@
 #include "Baronial.hpp"
-
-#include <cstdio>
+#include "../component/tooltips.hpp"
 
 float BaronialModule::paramValue (uint16_t param, uint16_t input, float low, float high) {
   float current = params[param].value;
@@ -17,14 +16,14 @@ BaronialModule::BaronialModule() {
   config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
   gate = new SynthDevKit::CV(0.5);
 
-  configParam(ATTACK_TIME_PARAM, 0.001, 4.999, 1.0);
-  configParam(ATTACK_CURVE_PARAM, 0.0, 1.0, 1.0);
-  configParam(DECAY_TIME_PARAM, 0.001, 4.999, 1.0);
-  configParam(DECAY_CURVE_PARAM, 0.0, 1.0, 1.0);
-  configParam(SUSTAIN_TIME_PARAM, 0.001, 4.999, 1.0);
-  configParam(SUSTAIN_LEVEL_PARAM, 0.001, 4.999, 1.0);
-  configParam(RELEASE_TIME_PARAM, 0.001, 4.999, 1.0);
-  configParam(RELEASE_CURVE_PARAM, 0.0, 1.0, 1.0);
+  configParam(ATTACK_TIME_PARAM, 0.001, 4.999, 1.0, "Time", " Seconds");
+  configParam<Slope>(ATTACK_CURVE_PARAM, 0.0, 1.0, 1.0);
+  configParam(DECAY_TIME_PARAM, 0.001, 4.999, 1.0, "Time", " Seconds");
+  configParam<Slope>(DECAY_CURVE_PARAM, 0.0, 1.0, 1.0);
+  configParam(SUSTAIN_TIME_PARAM, 0.001, 4.999, 1.0, "Time", " Seconds");
+  configParam(SUSTAIN_LEVEL_PARAM, 0.001, 4.999, 1.0, "Level", " Volts");
+  configParam(RELEASE_TIME_PARAM, 0.001, 4.999, 1.0, "Time", " Seconds");
+  configParam<Slope>(RELEASE_CURVE_PARAM, 0.0, 1.0, 1.0);
 }
 
 void BaronialModule::process(const ProcessArgs &args) {
@@ -46,6 +45,6 @@ void BaronialModule::process(const ProcessArgs &args) {
   envelope.setDecayCurve((CurveType) params[DECAY_CURVE_PARAM].value);
   envelope.setReleaseCurve((CurveType) params[RELEASE_CURVE_PARAM].value);
   envelope.setPeakLevel(1);
-  
+
   outputs[OUT].setVoltage(envelope.step() * 5);
 }

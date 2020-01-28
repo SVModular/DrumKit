@@ -1,18 +1,19 @@
 #include "SBD.hpp"
 #include <ctime>
+#include "../component/tooltips.hpp"
 
 SBDModule::SBDModule( ) {
   config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
   cv = new SynthDevKit::CV(0.5f);
   noise = new SynthDevKit::PinkNoise(time(NULL));
-  configParam(SBDModule::PITCH_PARAM, -5.0, 5.0, 0.0);
-  configParam(SBDModule::PITCH_DECAY_PARAM, -0.2, 1.2, 0.5);
-  configParam(SBDModule::AMP_DECAY_PARAM, -5.0, 5.0, 0.0);
-  configParam(SBDModule::SUBOCT_MIX_PARAM, 0.0, 1.0, 0.5);
-  configParam(SBDModule::DRIVE_PARAM, 0.0, 10.0, 5.0);
-  configParam(SBDModule::CLICK_PARAM, 0.0, 2.5, 1.25);
-  configParam(SBDModule::SUBOCT_PARAM, 0.0, 2.0, 0.0);
-  configParam(SBDModule::WAVE_PARAM, 0.0, 1.0, 1.0);
+  configParam(SBDModule::PITCH_PARAM, -5.0, 5.0, 0.0, "Pitch", "");
+  configParam(SBDModule::PITCH_DECAY_PARAM, -0.2, 1.2, 0.5, "Pitch Decay", " Seconds");
+  configParam(SBDModule::AMP_DECAY_PARAM, -5.0, 5.0, 0.0, "Amp Decay", " Seconds");
+  configParam<Percent>(SBDModule::SUBOCT_MIX_PARAM, 0.0, 1.0, 0.5, "Mix");
+  configParam(SBDModule::DRIVE_PARAM, 0.0, 10.0, 5.0, "Drive");
+  configParam(SBDModule::CLICK_PARAM, 0.0, 2.5, 1.25, "Click Level", " Volts");
+  configParam<SubOct>(SBDModule::SUBOCT_PARAM, 0.0, 2.0, 0.0, "Sub Octave");
+  configParam<WaveShape>(SBDModule::WAVE_PARAM, 0.0, 1.0, 1.0, "Wave");
 }
 
 void SBDModule::process(const ProcessArgs &args) {

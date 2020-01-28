@@ -3,15 +3,15 @@
 OpenHHModule::OpenHHModule( ) {
   // extend the NUM_PARAMS by 1 for choke and NUM_INPUTS by 2 for choke gate and CV
   config(NUM_PARAMS + 2, NUM_INPUTS + 4, NUM_OUTPUTS, NUM_LIGHTS);
-  configParam(DRUM_PARAM, 0.0, 13.0, 7.0);
-  configParam(DRUM_PARAM + 1, 0.0, 13.0, 7.0);
+  configParam(DRUM_PARAM, 0.0, 13.0, 7.0, "Sample");
+  configParam(DRUM_PARAM + 1, 0.0, 13.0, 7.0, "Sample");
 
-  configParam(TUNE_PARAM, 0.2, 1.8, 1);
-  configParam(TUNE_PARAM + 1, 0.2, 1.8, 1);
+  configParam(TUNE_PARAM, 0.2, 1.8, 1, "Playback Speed", "x");
+  configParam(TUNE_PARAM + 1, 0.2, 1.8, 1, "Playback Speed", "x");
 
   // choke param
-  configParam(CHOKE_PARAM, 0.05, 0.5, 0.255);
-  configParam(CHOKE_PARAM + 1, 0.05, 0.5, 0.255);
+  configParam(CHOKE_PARAM, 0.05, 0.5, 0.255, "Time");
+  configParam(CHOKE_PARAM + 1, 0.05, 0.5, 0.255, "Time");
 
   numModules = 2;
 

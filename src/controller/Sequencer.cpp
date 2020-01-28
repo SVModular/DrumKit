@@ -1,4 +1,5 @@
 #include "Sequencer.hpp"
+#include "../component/tooltips.hpp"
 
 static uint8_t patternForVoltage(float voltage) {
   float divisions = (float) 10 / (float) (NUM_PATTERNS + 1);
@@ -34,15 +35,15 @@ SequencerModule::SequencerModule() {
     // set up the programs for default, first is "1", the rest are 0
     programs[i] = 0;
 
-    configParam(PATTERN_UP + i, 0.0, 1.0, 0.0);
-    configParam(PATTERN_DOWN + i, 0.0, 1.0, 0.0);
+    configParam<Blank>(PATTERN_UP + i, 0.0, 1.0, 0.0, "Up");
+    configParam<Blank>(PATTERN_DOWN + i, 0.0, 1.0, 0.0, "Down");
   }
   programs[0] = 1;
 
   for (int i = 0; i < SEQ_TRACKS; i++) {
     // sequence pads
     for (int j = 0; j < SEQ_BEATS; j++) {
-      configParam(PAD_PARAM + j + (i * SEQ_BEATS), 0.0, 1.0, 0.0);
+      configParam<Toggle>(PAD_PARAM + j + (i * SEQ_BEATS), 0.0, 1.0, 0.0, std::to_string(j + 1) + "/" + std::to_string(i + 1));
     }
   }
 
@@ -57,13 +58,13 @@ SequencerModule::SequencerModule() {
 
   doReset();
 
-  configParam(PULSE_WIDTH, 0.1, 10.0, 5.05);
-  configParam(PLAY, 0.0f, 1.0f, 0.0f);
-  configParam(CYCLE, 0.0f, 1.0f, 0.0f);
-  configParam(MAIN_UP, 0.0f, 1.0f, 0.0f);
-  configParam(MAIN_DOWN, 0.0f, 1.0f, 0.0f);
-  configParam(COPY, 0.0f, 1.0f, 0.0f);
-  configParam(PASTE, 0.0f, 1.0f, 0.0f);
+  configParam<PercentTen>(PULSE_WIDTH, 0.1, 10.0, 5.05, "Width", "%");
+  configParam<Blank>(PLAY, 0.0f, 1.0f, 0.0f, "Run");
+  configParam<Blank>(CYCLE, 0.0f, 1.0f, 0.0f, "Cycle");
+  configParam<Blank>(MAIN_UP, 0.0f, 1.0f, 0.0f, "Up");
+  configParam<Blank>(MAIN_DOWN, 0.0f, 1.0f, 0.0f, "Down");
+  configParam<Blank>(COPY, 0.0f, 1.0f, 0.0f, "Copy");
+  configParam<Blank>(PASTE, 0.0f, 1.0f, 0.0f, "Paste");
 }
 
 void SequencerModule::doReset() {

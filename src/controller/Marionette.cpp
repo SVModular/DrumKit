@@ -1,22 +1,23 @@
 #include "Marionette.hpp"
 #include "../model/Envelope.hpp"
+#include "../component/tooltips.hpp"
 
 MarionetteModule::MarionetteModule( ) {
   config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
-  configParam(PITCH_DECAY_PARAM, 0.1, 2.2, 0.4);
-  configParam(PITCH_SUSTAIN_PARAM, 0.1, 0.9, 0.2);
-  configParam(PITCH_RELEASE_PARAM, 0.1, 2.9, 0.3);
-  configParam(PITCH_DECAY_DIR_PARAM, 0.0, 1.0, 0.0);
-  configParam(AMP_DECAY_PARAM, 0.1, 2.2, 0.4);
-  configParam(AMP_SUSTAIN_PARAM, 0.1, 0.9, 0.5);
-  configParam(AMP_RELEASE_PARAM, 0.1, 2.9, 0.4);
-  configParam(AMP_DECAY_DIR_PARAM, 0.0, 1.0, 0.0);
-  configParam(BLEND_PARAM, 0, 10, 5);
-  configParam(TUNE_PARAM, 0.2, 1.8, 1);
-  configParam(SUBOCT_MIX_PARAM, 0, 5, 2.5);
-  configParam(SUBOCT_WAVE_PARAM, 0, 10, 5);
-  configParam(SUBOCT_OCT_PARAM, 0, 2, 1);
-  configParam(KICK_PARAM, 1, 2, 1);
+  configParam(PITCH_DECAY_PARAM, 0.1, 2.2, 0.4, "Decay", " Seconds");
+  configParam(PITCH_SUSTAIN_PARAM, 0.1, 0.9, 0.2, "Sustain", " Seconds");
+  configParam(PITCH_RELEASE_PARAM, 0.1, 2.9, 0.3, "Release", " Seconds");
+  configParam<Direction>(PITCH_DECAY_DIR_PARAM, 0.0, 1.0, 0.0, "Decay Direction");
+  configParam(AMP_DECAY_PARAM, 0.1, 2.2, 0.4, "Decay", " Seconds");
+  configParam(AMP_SUSTAIN_PARAM, 0.1, 0.9, 0.5, "Sustain", " Seconds");
+  configParam(AMP_RELEASE_PARAM, 0.1, 2.9, 0.4, "Release", " Seconds");
+  configParam<Direction>(AMP_DECAY_DIR_PARAM, 0.0, 1.0, 0.0, "Decay Direction");
+  configParam<PercentTen>(BLEND_PARAM, 0, 10, 5, "Blend");
+  configParam(TUNE_PARAM, 0.2, 1.8, 1, "Tune");
+  configParam<PercentTen>(SUBOCT_MIX_PARAM, 0, 5, 2.5, "Mix");
+  configParam<WaveMix>(SUBOCT_WAVE_PARAM, 0, 10, 5, "Square/Sine");
+  configParam<SubOct>(SUBOCT_OCT_PARAM, 0, 2, 1, "Sub Octave");
+  configParam(KICK_PARAM, 1, 2, 1, "Sample");
 
   gate = new SynthDevKit::CV(0.5);
   sampleManager = sampleManager->getInstance();

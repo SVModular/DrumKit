@@ -1,12 +1,13 @@
 #include "Gnome.hpp"
+#include "../component/tooltips.hpp"
 
 GnomeModule::GnomeModule () {
   config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
 
-  configParam(BPM, 30.0f, 200.0f, 115.0f);
-  configParam(WIDTH, 0.1f, 0.6f, 0.35);
-  configParam(RUN, 0.0f, 1.0f, 0.0f);
-  configParam(SWING, 0.0f, 1.0f, 0.0f);
+  configParam(BPM, 30.0f, 200.0f, 115.0f, "Speed", " Beats per Minute");
+  configParam<Percent>(WIDTH, 0.1f, 0.6f, 0.35, "Width");
+  configParam<Blank>(RUN, 0.0f, 1.0f, 0.0f, "Run");
+  configParam<Swing>(SWING, 0.0f, 1.0f, 0.0f, "Swing Note");
 
   reset = new SynthDevKit::CV(0.5f);
   runCV = new SynthDevKit::CV(0.5f);
