@@ -13,7 +13,7 @@ struct SequencerWidget : ModuleWidget {
 
 SequencerWidget::SequencerWidget(SequencerModule *module) {
   setModule(module);
-  box.size = Vec(32 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT);
+  box.size = Vec(30 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT);
 
   setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/Sequencer.svg")));
 
