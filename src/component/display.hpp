@@ -2,14 +2,13 @@
 
 struct BPMDisplay : TransparentWidget {
   float *value;
-  std::shared_ptr<Font> font;
 
   BPMDisplay ( ) {
     value = NULL;
-    font = APP->window->loadFont(asset::plugin(pluginInstance, "res/component/NovaMono.ttf"));
   }
 
   void draw (const DrawArgs &args) override {
+    std::shared_ptr<Font> font = APP->window->loadFont(asset::plugin(pluginInstance, "res/component/NovaMono.ttf"));;
     char text[12];
     nvgFontSize(args.vg, 38);
     nvgFontFaceId(args.vg, font->handle);
@@ -56,14 +55,13 @@ struct WidthDisplay : TransparentWidget {
 
 struct TrackDisplay : TransparentWidget {
   int8_t *value;
-  std::shared_ptr<Font> font;
 
   TrackDisplay ( ) {
     value = NULL;
-    font = APP->window->loadFont(asset::plugin(pluginInstance, "res/component/NovaMono.ttf"));
   }
 
   void draw (const DrawArgs &args) override {
+    std::shared_ptr<Font> font = APP->window->loadFont(asset::plugin(pluginInstance, "res/component/NovaMono.ttf"));
     char text[12];
     nvgFontSize(args.vg, 38);
     nvgFontFaceId(args.vg, font->handle);
@@ -88,14 +86,13 @@ struct TrackDisplay : TransparentWidget {
 
 struct SmallTrackDisplay : TransparentWidget {
   int8_t *value;
-  std::shared_ptr<Font> font;
 
   SmallTrackDisplay ( ) {
     value = NULL;
-    font = APP->window->loadFont(asset::plugin(pluginInstance, "res/component/NovaMono.ttf"));
   }
 
   void draw (const DrawArgs &args) override {
+    std::shared_ptr<Font> font = APP->window->loadFont(asset::plugin(pluginInstance, "res/component/NovaMono.ttf"));
     char text[12];
     nvgFontSize(args.vg, 19);
     nvgFontFaceId(args.vg, font->handle);
