@@ -3,6 +3,7 @@
 
 struct OpenHHModule : SampleController {
   OpenHHModule();
+  ~OpenHHModule() override;
   void setupSamples( ) override;
   uint8_t sampleId(uint8_t) override;
   float chokeValue(uint8_t, uint32_t);

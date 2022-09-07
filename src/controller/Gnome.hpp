@@ -10,6 +10,7 @@ struct GnomeModule : Module {
   enum LightIds { LED_1, LED_2, LED_4, LED_8, LED_16, LED_A, LED_B, LED_C, LED_D, LED_E, LED_F, LED_RESET, RUN_LIGHT, NUM_LIGHTS };
 
   GnomeModule( );
+  ~GnomeModule();
   float paramValue (uint16_t, uint16_t, float, float);
   void process(const ProcessArgs &args) override;
 

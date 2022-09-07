@@ -18,6 +18,7 @@ private:
 
 public:
   LowFrequencyOscillator();
+  ~LowFrequencyOscillator();
   void setPitch(float);
   void setFrequency(float);
   void setPulseWidth(float);

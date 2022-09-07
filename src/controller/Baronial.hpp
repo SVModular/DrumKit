@@ -13,6 +13,7 @@ struct BaronialModule : Module {
   enum LightIds { NUM_LIGHTS };
 
   BaronialModule();
+  ~BaronialModule() override;
   float paramValue (uint16_t, uint16_t, float, float);
 
   void process(const ProcessArgs &args) override;

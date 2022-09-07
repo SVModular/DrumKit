@@ -67,6 +67,23 @@ SequencerModule::SequencerModule() {
   doReset();
 }
 
+SequencerModule::~SequencerModule() {
+  delete clock;
+  delete runCV;
+  delete runParam;
+  delete cycleCV;
+  delete cycleParam;
+  delete resetCV;
+  delete mainUp;
+  delete mainDown;
+  delete copy;
+  delete paste;
+  for (int i = 0; i < SEQ_PLAY; i++) {
+    delete patternUp[i];
+    delete patternDown[i];
+  }
+}
+
 void SequencerModule::doReset() {
   currentCount = -1;
   currentGate = -1;

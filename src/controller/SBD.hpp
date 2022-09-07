@@ -15,6 +15,7 @@ struct SBDModule : Module {
   enum LightIds { NUM_LIGHTS };
 
   SBDModule( );
+  ~SBDModule() override;
   void process(const ProcessArgs &) override;
 
   LowFrequencyOscillator lfo;

@@ -28,6 +28,10 @@ MarionetteModule::MarionetteModule( ) {
   freqAdsr.setDecayCurve(CURVED);
 }
 
+MarionetteModule::~MarionetteModule() {
+  delete gate;
+}
+
 float MarionetteModule::paramValue (uint16_t param, uint16_t input, float low, float high) {
   float current = params[param].getValue();
 
