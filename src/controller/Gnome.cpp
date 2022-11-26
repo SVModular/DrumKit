@@ -16,6 +16,12 @@ GnomeModule::GnomeModule () {
   doReset();
 }
 
+GnomeModule::~GnomeModule() {
+  delete reset;
+  delete runCV;
+  delete runParam;
+}
+
 void GnomeModule::doReset() {
   bpm = 0;
   width = 0;

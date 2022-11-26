@@ -40,6 +40,10 @@ namespace DrumKit {
 
     mantissa = modf(ctx->currentPosition, &characteristic);
 
+    if ((uint64_t) characteristic == 0) {
+      return 0.0f;
+    }
+
     if (mantissa == 0) {
       return ctx->sample->values[(uint64_t) characteristic - 1];
     }

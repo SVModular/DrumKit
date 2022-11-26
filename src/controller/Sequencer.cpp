@@ -56,8 +56,6 @@ SequencerModule::SequencerModule() {
     }
   }
 
-  doReset();
-
   configParam<PercentTen>(PULSE_WIDTH, 0.1, 10.0, 5.05, "Width", "%");
   configParam<Blank>(PLAY, 0.0f, 1.0f, 0.0f, "Run");
   configParam<Blank>(CYCLE, 0.0f, 1.0f, 0.0f, "Cycle");
@@ -65,14 +63,34 @@ SequencerModule::SequencerModule() {
   configParam<Blank>(MAIN_DOWN, 0.0f, 1.0f, 0.0f, "Down");
   configParam<Blank>(COPY, 0.0f, 1.0f, 0.0f, "Copy");
   configParam<Blank>(PASTE, 0.0f, 1.0f, 0.0f, "Paste");
+
+  doReset();
+}
+
+SequencerModule::~SequencerModule() {
+  delete clock;
+  delete runCV;
+  delete runParam;
+  delete cycleCV;
+  delete cycleParam;
+  delete resetCV;
+  delete mainUp;
+  delete mainDown;
+  delete copy;
+  delete paste;
+  for (int i = 0; i < SEQ_PLAY; i++) {
+    delete patternUp[i];
+    delete patternDown[i];
+  }
 }
 
 void SequencerModule::doReset() {
   currentCount = -1;
+  currentGate = -1;
+  currentPlay = 1;
+  currentPosition = 0;
   savePattern(currentPlay);
   setPlay(programs[0]);
-  currentGate = -1;
-  currentPosition = 0;
 }
 
 json_t *SequencerModule::dataToJson() {
