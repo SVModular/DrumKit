@@ -16,6 +16,7 @@ struct SampleController : Module {
   enum LightIds { NUM_LIGHTS };
 
   SampleController( );
+  ~SampleController() override;
   void process(const ProcessArgs &) override;
   float paramValue (uint16_t, uint16_t, float, float);
   virtual void setupSamples( );

@@ -16,6 +16,11 @@ SBDModule::SBDModule( ) {
   configParam<WaveShape>(SBDModule::WAVE_PARAM, 0.0, 1.0, 1.0, "Wave");
 }
 
+SBDModule::~SBDModule() {
+  delete cv;
+  delete noise;
+}
+
 void SBDModule::process(const ProcessArgs &args) {
   float noiseVal = 0.0f;
   float freq_decay = params[PITCH_DECAY_PARAM].getValue();

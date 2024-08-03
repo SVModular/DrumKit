@@ -9,6 +9,11 @@ SampleController::SampleController( ) {
   numModules = 0;
 }
 
+SampleController::~SampleController() {
+  for (uint8_t i = 0; i < MAX_MODULES; i++)
+    delete cv[i];
+}
+
 float SampleController::paramValue (uint16_t param, uint16_t input, float low, float high) {
   float current = params[param].getValue();
 

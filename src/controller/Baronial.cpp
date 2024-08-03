@@ -26,6 +26,10 @@ BaronialModule::BaronialModule() {
   configParam<Slope>(RELEASE_CURVE_PARAM, 0.0, 1.0, 1.0);
 }
 
+BaronialModule::~BaronialModule() {
+  delete gate;
+}
+
 void BaronialModule::process(const ProcessArgs &args) {
   if (inputs[GATE].isConnected()) {
     gate->update(inputs[GATE].getVoltage());

@@ -19,6 +19,10 @@ LowFrequencyOscillator::LowFrequencyOscillator() {
   srand(time(NULL));
 }
 
+LowFrequencyOscillator::~LowFrequencyOscillator() {
+  delete cv;
+}
+
 void LowFrequencyOscillator::setPitch(float pitch) {
   pitch = fminf(pitch, 8.0);
   freq = powf(2.0, pitch);

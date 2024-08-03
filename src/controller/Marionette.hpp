@@ -45,6 +45,7 @@ struct MarionetteModule : Module {
   enum LightIds { NUM_LIGHTS };
 
   MarionetteModule();
+  ~MarionetteModule() override;
   void process(const ProcessArgs &) override;
 
   float pitchEnvelope ( );

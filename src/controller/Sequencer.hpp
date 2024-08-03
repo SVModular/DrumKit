@@ -48,6 +48,7 @@ struct SequencerModule : Module {
   };
 
   SequencerModule( );
+  ~SequencerModule() override;
 
   void process(const ProcessArgs &) override;
   json_t *dataToJson() override;

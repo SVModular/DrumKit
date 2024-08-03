@@ -31,6 +31,11 @@ OpenHHModule::OpenHHModule( ) {
   chokeCV[1] = new SynthDevKit::CV(0.5);
 }
 
+OpenHHModule::~OpenHHModule() {
+  delete chokeCV[0];
+  delete chokeCV[1];
+}
+
 float OpenHHModule::chokeValue(uint8_t which, uint32_t sampleRate) {
   if (choking[which] == false) {
     return 1;
